@@ -8,71 +8,135 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient; // SQL Server bağlantısı için 
-using System.Net;            // Mail gönderirken kimlik doğrulama için
-using System.Net.Mail;       // Mail gönderme sınıfları için
+using System.Data.SqlClient;
+using System.Net;
+using System.Net.Mail;
+using Microsoft.VisualBasic; // InputBox kullanabilmek için (Referanslardan eklemelisin)
 
 namespace TechCheck_Final
 {
     public partial class Form1 : Form
     {
-        private string connectionString;
-
         public Form1()
         {
             InitializeComponent();
-            // Initialize connectionString once so all methods (login, password recovery) can use it
-            
         }
+
+        // Veritabanı bağlantısı
+        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TechCheckDB;Integrated Security=True");
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Label'ın babası artık o mor panel olsun diyoruz:
-            label1.Parent = pictureBox1; // Buradaki isimleri kendi panel ve label ismine göre düzelt
+            label1.Parent = pictureBox1;
             label1.BackColor = Color.Transparent;
-
-
         }
-        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TechCheckDB;Integrated Security=True");
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
                 baglanti.Open();
-                // İsmi ve şifreyi aynı anda kontrol eden sorgu
                 string sorgu = "SELECT * FROM Kullanicilar WHERE KullaniciAdi=@p1 AND Sifre=@p2";
-
                 SqlCommand komut = new SqlCommand(sorgu, baglanti);
                 komut.Parameters.AddWithValue("@p1", txtKullaniciAdi.Text);
                 komut.Parameters.AddWithValue("@p2", txtSifre.Text);
 
                 SqlDataReader dr = komut.ExecuteReader();
 
-                if (dr.Read()) // Eğer veritabanında böyle bir eşleşme varsa (Data bulunursa)
+                if (dr.Read())
                 {
                     MessageBox.Show("Giriş Başarılı!", "TechCheck", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Dashboard formunu aç
                     Dashboard dsh = new Dashboard();
                     dsh.Show();
-
-                    this.Hide(); // Login formunu gizle
+                    this.Hide();
                 }
                 else
                 {
                     MessageBox.Show("Kullanıcı adı veya şifre hatalı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                baglanti.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Bağlantı hatası: " + ex.Message);
             }
-        }
+            finally { baglanti.Close(); }
         }
 
-        
+        private void lblForgetPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtKullaniciAdi.Text))
+            {
+                MessageBox.Show("Lütfen önce kullanıcı adınızı giriniz!");
+                return;
+            }
+
+            try
+            {
+                // 1. Kod Üret
+                Random rnd = new Random();
+                string kod = rnd.Next(100000, 999999).ToString();
+
+                // 2. Veritabanına Yaz ve Mail Çek
+                baglanti.Open();
+                SqlCommand komutKod = new SqlCommand("UPDATE Kullanicilar SET KurtarmaKodu=@k1 WHERE KullaniciAdi=@p1", baglanti);
+                komutKod.Parameters.AddWithValue("@k1", kod);
+                komutKod.Parameters.AddWithValue("@p1", txtKullaniciAdi.Text);
+                komutKod.ExecuteNonQuery();
+
+                SqlCommand komutMail = new SqlCommand("SELECT Email FROM Kullanicilar WHERE KullaniciAdi=@p1", baglanti);
+                komutMail.Parameters.AddWithValue("@p1", txtKullaniciAdi.Text);
+                string aliciMail = komutMail.ExecuteScalar()?.ToString();
+                baglanti.Close();
+
+                if (string.IsNullOrEmpty(aliciMail))
+                {
+                    MessageBox.Show("Bu kullanıcıya ait kayıtlı bir e-posta bulunamadı!");
+                    return;
+                }
+
+                // 3. Mail Gönder (BURAYI GÜNCELLE)
+                SmtpClient sc = new SmtpClient();
+                sc.Port = 587;
+                sc.Host = "smtp.gmail.com";
+                sc.EnableSsl = true;
+                // Kendi bilgilerini buraya yaz:
+                sc.Credentials = new NetworkCredential("mustafakilkis739@gmail.com", "epzccctfecqtxbgc");
+
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("mustafakilkis739@gmail.com", "TechCheck Güvenlik");
+                mail.To.Add(aliciMail);
+                mail.Subject = "Şifre Sıfırlama Kodu";
+                mail.Body = $"Sayın {txtKullaniciAdi.Text},\n\nŞifrenizi sıfırlamak için güvenlik kodunuz: {kod}";
+
+                sc.Send(mail);
+                MessageBox.Show("Kurtarma kodu e-posta adresinize gönderildi!");
+
+                // 4. Kod Doğrulama (Basit bir InputBox ile)
+                string girilenKod = Interaction.InputBox("Lütfen mailinize gelen 6 haneli kodu giriniz:", "Kod Doğrulama");
+
+                if (girilenKod == kod)
+                {
+                    string yeniSifre = Interaction.InputBox("Kod Doğrulandı! Yeni şifrenizi giriniz:", "Şifre Güncelleme");
+
+                    baglanti.Open();
+                    SqlCommand komutGuncelle = new SqlCommand("UPDATE Kullanicilar SET Sifre=@s1 WHERE KullaniciAdi=@p1", baglanti);
+                    komutGuncelle.Parameters.AddWithValue("@s1", yeniSifre);
+                    komutGuncelle.Parameters.AddWithValue("@p1", txtKullaniciAdi.Text);
+                    komutGuncelle.ExecuteNonQuery();
+                    baglanti.Close();
+
+                    MessageBox.Show("Şifreniz başarıyla güncellendi! Yeni şifrenizle giriş yapabilirsiniz.");
+                }
+                else
+                {
+                    MessageBox.Show("Hatalı kod girdiniz!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("İşlem sırasında hata oluştu: " + ex.Message);
+            }
+            finally { if (baglanti.State == ConnectionState.Open) baglanti.Close(); }
+        }
     }
-    
-
+}
