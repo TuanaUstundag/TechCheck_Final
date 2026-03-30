@@ -29,9 +29,7 @@ namespace TechCheck_Final
                 da.Fill(dt); // SQL'den gelen verileri bu sanal tabloya doldur
                 dgvCihazListesi.AutoGenerateColumns = false; // SQL'in kafasına göre sütun eklemesini engeller
                 dgvCihazListesi.DataSource = dt;
-                
-
-                dgvCihazListesi.DataSource = dt; // Guna2DataGridView'in kaynağı bu tablo olsun
+              
                 baglanti.Close();
                
                 
