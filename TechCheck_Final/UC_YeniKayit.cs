@@ -56,7 +56,7 @@ namespace TechCheck_Final
                 komut.ExecuteNonQuery(); // Komutu çalıştır
                 baglanti.Close(); // Kapıyı kapattık
 
-                MessageBox.Show("Cihaz başarıyla veritabanına kaydedildi!", "TechCheck", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cihaz başarıyla kaydedildi!", "TechCheck", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
