@@ -33,13 +33,7 @@ namespace TechCheck_Final
 
                 dgvCihazListesi.DataSource = dt; // Guna2DataGridView'in kaynağı bu tablo olsun
                 baglanti.Close();
-                dgvCihazListesi.Columns["Id"].Visible = false;
-                var c = dgvCihazListesi.Columns.Cast<DataGridViewColumn>().FirstOrDefault(x => x.DataPropertyName == "MusteriAd"); if (c != null) c.Name = "MusteriAd";
-                dgvCihazListesi.Columns["CihazModel"].Visible = false;
-                dgvCihazListesi.Columns["SeriNo"].Visible = false;
-                dgvCihazListesi.Columns["Ariza"].Visible = false;
-                dgvCihazListesi.Columns["Durum"].Visible = false;
-                dgvCihazListesi.Columns["KayitTarihi"].Visible = false;
+               
                 
                 // Toplam sütun sayısından 1 ve 2 çıkararak en sona atıyoruz.
                 dgvCihazListesi.Columns["colEdit"].DisplayIndex = dgvCihazListesi.ColumnCount - 2;
