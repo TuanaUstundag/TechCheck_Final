@@ -54,7 +54,8 @@
             // btnYenikayit
             // 
             this.btnYenikayit.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnYenikayit.CheckedState.ForeColor = System.Drawing.Color.Indigo;
+            this.btnYenikayit.CheckedState.FillColor = System.Drawing.Color.Indigo;
+            this.btnYenikayit.CheckedState.ForeColor = System.Drawing.Color.White;
             this.btnYenikayit.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnYenikayit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnYenikayit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -69,6 +70,7 @@
             this.btnYenikayit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnYenikayit.Name = "btnYenikayit";
             this.btnYenikayit.Size = new System.Drawing.Size(185, 56);
+            this.btnYenikayit.Size = new System.Drawing.Size(256, 69);
             this.btnYenikayit.TabIndex = 3;
             this.btnYenikayit.Text = "Yeni Kayıt";
             this.btnYenikayit.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -78,7 +80,8 @@
             // btnAnasayfa
             // 
             this.btnAnasayfa.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnAnasayfa.CheckedState.ForeColor = System.Drawing.Color.Indigo;
+            this.btnAnasayfa.CheckedState.FillColor = System.Drawing.Color.Indigo;
+            this.btnAnasayfa.CheckedState.ForeColor = System.Drawing.Color.White;
             this.btnAnasayfa.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnAnasayfa.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnAnasayfa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -92,7 +95,7 @@
             this.btnAnasayfa.Location = new System.Drawing.Point(0, 2);
             this.btnAnasayfa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAnasayfa.Name = "btnAnasayfa";
-            this.btnAnasayfa.Size = new System.Drawing.Size(185, 56);
+            this.btnAnasayfa.Size = new System.Drawing.Size(256, 69);
             this.btnAnasayfa.TabIndex = 1;
             this.btnAnasayfa.Text = "Anasayfa";
             this.btnAnasayfa.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -102,7 +105,8 @@
             // btnCihazlistesi
             // 
             this.btnCihazlistesi.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnCihazlistesi.CheckedState.ForeColor = System.Drawing.Color.Indigo;
+            this.btnCihazlistesi.CheckedState.FillColor = System.Drawing.Color.Indigo;
+            this.btnCihazlistesi.CheckedState.ForeColor = System.Drawing.Color.White;
             this.btnCihazlistesi.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnCihazlistesi.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnCihazlistesi.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -116,7 +120,7 @@
             this.btnCihazlistesi.Location = new System.Drawing.Point(0, 63);
             this.btnCihazlistesi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCihazlistesi.Name = "btnCihazlistesi";
-            this.btnCihazlistesi.Size = new System.Drawing.Size(185, 56);
+            this.btnCihazlistesi.Size = new System.Drawing.Size(256, 69);
             this.btnCihazlistesi.TabIndex = 2;
             this.btnCihazlistesi.Text = "Cihaz Listesi";
             this.btnCihazlistesi.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;

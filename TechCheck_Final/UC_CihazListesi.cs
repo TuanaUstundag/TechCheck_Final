@@ -29,17 +29,9 @@ namespace TechCheck_Final
                 da.Fill(dt); // SQL'den gelen verileri bu sanal tabloya doldur
                 dgvCihazListesi.AutoGenerateColumns = false; // SQL'in kafasına göre sütun eklemesini engeller
                 dgvCihazListesi.DataSource = dt;
-                
-
-                dgvCihazListesi.DataSource = dt; // Guna2DataGridView'in kaynağı bu tablo olsun
+              
                 baglanti.Close();
-                dgvCihazListesi.Columns["Id"].Visible = false;
-                var c = dgvCihazListesi.Columns.Cast<DataGridViewColumn>().FirstOrDefault(x => x.DataPropertyName == "MusteriAd"); if (c != null) c.Name = "MusteriAd";
-                dgvCihazListesi.Columns["CihazModel"].Visible = false;
-                dgvCihazListesi.Columns["SeriNo"].Visible = false;
-                dgvCihazListesi.Columns["Ariza"].Visible = false;
-                dgvCihazListesi.Columns["Durum"].Visible = false;
-                dgvCihazListesi.Columns["KayitTarihi"].Visible = false;
+               
                 
                 // Toplam sütun sayısından 1 ve 2 çıkararak en sona atıyoruz.
                 dgvCihazListesi.Columns["colEdit"].DisplayIndex = dgvCihazListesi.ColumnCount - 2;
@@ -120,19 +112,29 @@ namespace TechCheck_Final
 
         private void dgvCihazListesi_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Hangi sütuna tıklandığını kontrol ediyoruz
-            string columnName = dgvCihazListesi.Columns[e.ColumnIndex].Name;
-
-            // SİLME İKONUNA TIKLANDIYSA
-            if (columnName == "colDelete")
+            // 1. GÜVENLİK: Kullanıcı yanlışlıkla tablo başlığına tıklarsa hata vermesin
+            if (e.RowIndex >= 0)
             {
-                int id = Convert.ToInt32(dgvCihazListesi.Rows[e.RowIndex].Cells["Id"].Value);
+                string columnName = dgvCihazListesi.Columns[e.ColumnIndex].Name;
 
-                if (MessageBox.Show("Bu kaydı silmek istediğinize emin misiniz?", "TechCheck", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                // SİLME İKONUNA TIKLANDIYSA
+                if (columnName == "colDelete")
                 {
-                    // Veritabanından silme kodunu buraya yaz (Daha önce yaptığımız silme kodu)
-                    KaydiSil(id);
-                    Listele(); // Tabloyu yenile
+                    int id = Convert.ToInt32(dgvCihazListesi.Rows[e.RowIndex].Cells["Id"].Value);
+
+                    if (MessageBox.Show("Bu kaydı silmek istediğinize emin misiniz?", "TechCheck", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        KaydiSil(id); // Veritabanından silme işlemini yapar
+
+                        // 2. İŞTE ÇÖZÜM: Tabloyu hemen değil, tıklama olayı bitince güvenlice yenile
+                        this.BeginInvoke(new Action(() => VerileriGetir()));
+                    }
+                }
+
+                // DÜZENLEME İKONUNA TIKLANDIYSA
+                if (columnName == "colEdit")
+                {
+                    // ... (Buradaki düzenleme kodlarına hiç dokunma, onlar kalsın) ...
                 }
             }
 
