@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Net;
 using System.Net.Mail;
-using Microsoft.VisualBasic; // InputBox kullanabilmek için (Referanslardan eklemelisin)
+using Microsoft.VisualBasic;
 
 namespace TechCheck_Final
 {
@@ -22,7 +22,6 @@ namespace TechCheck_Final
             InitializeComponent();
         }
 
-        // Veritabanı bağlantısı
         SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TechCheckDB;Integrated Security=True");
 
         private void Form1_Load(object sender, EventArgs e)
@@ -94,24 +93,31 @@ namespace TechCheck_Final
                     return;
                 }
 
-                // 3. Mail Gönder (BURAYI GÜNCELLE)
+                // ... (üst kısımlar aynı)
+
+                // 3. Mail Gönder (KODU BURADAN İTİBAREN GÜNCELLEDİM)
                 SmtpClient sc = new SmtpClient();
                 sc.Port = 587;
                 sc.Host = "smtp.gmail.com";
                 sc.EnableSsl = true;
-                // Kendi bilgilerini buraya yaz:
                 sc.Credentials = new NetworkCredential("mustafakilkis739@gmail.com", "epzccctfecqtxbgc");
 
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("mustafakilkis739@gmail.com", "TechCheck Güvenlik");
                 mail.To.Add(aliciMail);
                 mail.Subject = "Şifre Sıfırlama Kodu";
-                mail.Body = $"Sayın {txtKullaniciAdi.Text},\n\nŞifrenizi sıfırlamak için güvenlik kodunuz: {kod}";
+
+                // BURASI KRİTİK: $ işaretini kaldırdım, + ile birleştirdim. 
+                // Bu sayede "kod" değişkeni metnin içine zorla yapışacak.
+                mail.Body = "Sayın " + txtKullaniciAdi.Text + ",\n\n" +
+                            "Şifrenizi sıfırlamak için güvenlik kodunuz: " + kod + "\n\n" +
+                            "Lütfen bu kodu uygulamadaki ekrana giriniz.";
 
                 sc.Send(mail);
                 MessageBox.Show("Kurtarma kodu e-posta adresinize gönderildi!");
 
-                // 4. Kod Doğrulama (Basit bir InputBox ile)
+                // ... (alt kısımlar aynı)
+                // 4. Kod Doğrulama
                 string girilenKod = Interaction.InputBox("Lütfen mailinize gelen 6 haneli kodu giriniz:", "Kod Doğrulama");
 
                 if (girilenKod == kod)
@@ -125,7 +131,7 @@ namespace TechCheck_Final
                     komutGuncelle.ExecuteNonQuery();
                     baglanti.Close();
 
-                    MessageBox.Show("Şifreniz başarıyla güncellendi! Yeni şifrenizle giriş yapabilirsiniz.");
+                    MessageBox.Show("Şifreniz başarıyla güncellendi!");
                 }
                 else
                 {
@@ -134,7 +140,7 @@ namespace TechCheck_Final
             }
             catch (Exception ex)
             {
-                MessageBox.Show("İşlem sırasında hata oluştu: " + ex.Message);
+                MessageBox.Show("Hata: " + ex.Message);
             }
             finally { if (baglanti.State == ConnectionState.Open) baglanti.Close(); }
         }

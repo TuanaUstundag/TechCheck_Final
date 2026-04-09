@@ -41,5 +41,10 @@ namespace TechCheck_Final
             // Daha önce yazdığımız o metodu çağırıyoruz
             addUserControl(new UC_YeniKayit());
         }
+
+        private void pnlContainer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

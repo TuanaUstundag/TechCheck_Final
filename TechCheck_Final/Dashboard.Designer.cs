@@ -46,8 +46,9 @@
             panel1.Dock = System.Windows.Forms.DockStyle.Left;
             panel1.ForeColor = System.Drawing.SystemColors.ControlText;
             panel1.Location = new System.Drawing.Point(0, 0);
+            panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(250, 775);
+            panel1.Size = new System.Drawing.Size(188, 630);
             panel1.TabIndex = 0;
             // 
             // btnYenikayit
@@ -64,9 +65,10 @@
             this.btnYenikayit.HoverState.FillColor = System.Drawing.Color.Indigo;
             this.btnYenikayit.Image = global::TechCheck_Final.Properties.Resources.add;
             this.btnYenikayit.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnYenikayit.Location = new System.Drawing.Point(0, 153);
+            this.btnYenikayit.Location = new System.Drawing.Point(0, 124);
+            this.btnYenikayit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnYenikayit.Name = "btnYenikayit";
-            this.btnYenikayit.Size = new System.Drawing.Size(247, 69);
+            this.btnYenikayit.Size = new System.Drawing.Size(185, 56);
             this.btnYenikayit.TabIndex = 3;
             this.btnYenikayit.Text = "Yeni Kayıt";
             this.btnYenikayit.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -87,9 +89,10 @@
             this.btnAnasayfa.HoverState.FillColor = System.Drawing.Color.Indigo;
             this.btnAnasayfa.Image = global::TechCheck_Final.Properties.Resources.home__1_;
             this.btnAnasayfa.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAnasayfa.Location = new System.Drawing.Point(0, 3);
+            this.btnAnasayfa.Location = new System.Drawing.Point(0, 2);
+            this.btnAnasayfa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAnasayfa.Name = "btnAnasayfa";
-            this.btnAnasayfa.Size = new System.Drawing.Size(247, 69);
+            this.btnAnasayfa.Size = new System.Drawing.Size(185, 56);
             this.btnAnasayfa.TabIndex = 1;
             this.btnAnasayfa.Text = "Anasayfa";
             this.btnAnasayfa.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -110,9 +113,10 @@
             this.btnCihazlistesi.HoverState.FillColor = System.Drawing.Color.Indigo;
             this.btnCihazlistesi.Image = global::TechCheck_Final.Properties.Resources.menu_burger;
             this.btnCihazlistesi.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCihazlistesi.Location = new System.Drawing.Point(0, 78);
+            this.btnCihazlistesi.Location = new System.Drawing.Point(0, 63);
+            this.btnCihazlistesi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCihazlistesi.Name = "btnCihazlistesi";
-            this.btnCihazlistesi.Size = new System.Drawing.Size(247, 69);
+            this.btnCihazlistesi.Size = new System.Drawing.Size(185, 56);
             this.btnCihazlistesi.TabIndex = 2;
             this.btnCihazlistesi.Text = "Cihaz Listesi";
             this.btnCihazlistesi.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -122,20 +126,23 @@
             // pnlContainer
             // 
             this.pnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContainer.Location = new System.Drawing.Point(250, 0);
+            this.pnlContainer.Location = new System.Drawing.Point(188, 0);
+            this.pnlContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlContainer.Name = "pnlContainer";
-            this.pnlContainer.Size = new System.Drawing.Size(1081, 775);
+            this.pnlContainer.Size = new System.Drawing.Size(810, 630);
             this.pnlContainer.TabIndex = 1;
+            this.pnlContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContainer_Paint);
             // 
             // Dashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1331, 775);
+            this.ClientSize = new System.Drawing.Size(998, 630);
             this.Controls.Add(this.pnlContainer);
             this.Controls.Add(panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Dashboard";
             panel1.ResumeLayout(false);
             this.ResumeLayout(false);
