@@ -16,47 +16,14 @@ namespace TechCheck_Final
     public partial class UC_CihazListesi : UserControl
     {
         // Bağlantı cümlesini buraya da ekliyoruz (New Record sayfasındakiyle aynı olmalı)
-        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TechCheckDB;Integrated Security=True");
+        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True");
 
-        public void Listele()
-        {
-            try
-            {
-                baglanti.Open();
-                string sorgu = "SELECT * FROM Cihazlar"; // Tablodaki her şeyi seç
-                SqlDataAdapter da = new SqlDataAdapter(sorgu, baglanti);
-                DataTable dt = new DataTable();
-                da.Fill(dt); // SQL'den gelen verileri bu sanal tabloya doldur
-                dgvCihazListesi.AutoGenerateColumns = false; // SQL'in kafasına göre sütun eklemesini engeller
-                dgvCihazListesi.DataSource = dt;
-              
-                baglanti.Close();
-               
-                
-                // Toplam sütun sayısından 1 ve 2 çıkararak en sona atıyoruz.
-                dgvCihazListesi.Columns["colEdit"].DisplayIndex = dgvCihazListesi.ColumnCount - 2;
-                dgvCihazListesi.Columns["colDelete"].DisplayIndex = dgvCihazListesi.ColumnCount - 1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Veriler yüklenirken hata oluştu: " + ex.Message);
-            }
-        }
         public UC_CihazListesi()
         {
             InitializeComponent();
         }
 
-        private void cihazıDüzenleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Seçili satırı silmek için basit bir kod:
-            if (dgvCihazListesi.SelectedRows.Count > 0)
-            {
-                dgvCihazListesi.Rows.RemoveAt(dgvCihazListesi.SelectedRows[0].Index);
-                MessageBox.Show("Cihaz kaydı başarıyla silindi!", "TechCheck", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
+     
         private void UC_CihazListesi_Load(object sender, EventArgs e)
         {
             VerileriGetir();
@@ -70,15 +37,16 @@ namespace TechCheck_Final
                 if (baglanti.State == ConnectionState.Closed) baglanti.Open();
 
                 // LIKE komutu ile hem Müşteri Adı hem de Cihaz Modeli içinde arama yapıyoruz
-                string sorgu = "SELECT * FROM Cihazlar WHERE MusteriAd LIKE @p1 OR CihazModel LIKE @p1";
+                string sorgu = "SELECT * FROM Cihazlar WHERE MusteriAd LIKE @p1 OR CihazModel LIKE @p1"; // @p1 parametresi, txtSearch.Text içindeki değeri alır ve % ile sarar, böylece içinde geçen her şeyi bulur
 
                 SqlDataAdapter da = new SqlDataAdapter(sorgu, baglanti);
                 // % işareti "içinde geçen her şeyi bul" demektir
                 da.SelectCommand.Parameters.AddWithValue("@p1", "%" + txtSearch.Text + "%");
+                //% (Yüzde İşareti): SQL dilinde "Her şey gelebilir" anlamına gelen bir joker karakterdir (wildcard).
 
                 DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgvCihazListesi.DataSource = dt;
+                da.Fill(dt); // Arama sonuçlarını bu tabloya doldurur
+                dgvCihazListesi.DataSource = dt; // Arama sonuçlarını tabloya yansıtır
 
                 baglanti.Close();
             }
@@ -88,34 +56,12 @@ namespace TechCheck_Final
             }
         }
 
-        private void kaydıSilToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (dgvCihazListesi.SelectedRows.Count > 0) // Bir satır seçili mi?
-            {
-                DialogResult onay = MessageBox.Show("Bu kaydı silmek istediğinize emin misiniz?", "TechCheck Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (onay == DialogResult.Yes)
-                {
-                    int id = Convert.ToInt32(dgvCihazListesi.SelectedRows[0].Cells["Id"].Value); // Seçili satırın ID'sini al
-
-                    baglanti.Open();
-                    SqlCommand silKomutu = new SqlCommand("DELETE FROM Cihazlar WHERE Id=@p1", baglanti);
-                    silKomutu.Parameters.AddWithValue("@p1", id);
-                    silKomutu.ExecuteNonQuery();
-                    baglanti.Close();
-
-                    MessageBox.Show("Kayıt başarıyla silindi!");
-                    Listele(); // Listeyi güncelle ki silindiğini görelim
-                }
-            }
-            }
-
         private void dgvCihazListesi_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // 1. GÜVENLİK: Kullanıcı yanlışlıkla tablo başlığına tıklarsa hata vermesin
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0) // Sadece veri satırlarına tıklanırsa işlemi yap
             {
-                string columnName = dgvCihazListesi.Columns[e.ColumnIndex].Name;
+                string columnName = dgvCihazListesi.Columns[e.ColumnIndex].Name; // Tıklanan sütunun adını alır
 
                 // SİLME İKONUNA TIKLANDIYSA
                 if (columnName == "colDelete")
@@ -126,16 +72,14 @@ namespace TechCheck_Final
                     {
                         KaydiSil(id); // Veritabanından silme işlemini yapar
 
-                        // 2. İŞTE ÇÖZÜM: Tabloyu hemen değil, tıklama olayı bitince güvenlice yenile
+                        
                         this.BeginInvoke(new Action(() => VerileriGetir()));
+                        //BeginInvoke, işlemi güvenli bir şekilde sıraya koyar ve mevcut olay tamamlandıktan sonra çalıştırır. Böylece, tıklama olayının bitmesini bekler ve ardından tabloyu yeniler, böylece hata olmaz.
+
                     }
                 }
 
-                // DÜZENLEME İKONUNA TIKLANDIYSA
-                if (columnName == "colEdit")
-                {
-                    // ... (Buradaki düzenleme kodlarına hiç dokunma, onlar kalsın) ...
-                }
+                
             }
 
             // DÜZENLEME İKONUNA TIKLANDIYSA
@@ -151,6 +95,7 @@ namespace TechCheck_Final
 
                 // Düzenleme formunu oluştur ve verileri gönder
                 frmDuzenle frm = new frmDuzenle(id, ad, model, seri, ariza, durum);
+               
                 frm.ShowDialog(); // Formu aç
 
                 VerileriGetir(); // Form kapandığında listeyi yenile
@@ -185,7 +130,9 @@ namespace TechCheck_Final
             if (dgvCihazListesi.Columns[e.ColumnIndex].Name == "colEdit")
             {
                
-                e.Value = Properties.Resources.pencil; 
+                e.Value = Properties.Resources.pencil; // Proje kaynaklarına eklediğimiz kalem ikonunu burada kullanıyoruz
+                //e.Value: Hücrenin içindeki asıl değerdir(normalde boştur veya metindir).
+                //Properties.Resources.pencil: Projenin kaynaklar (Resources) klasörüne daha önce eklediğin pencil isimli görseli çağırır.
             }
 
             // Sil (Çöp Kutusu) İkonu Sütunu
@@ -215,8 +162,8 @@ namespace TechCheck_Final
                 // 3. İkonların en sağda ve doğru sırada durduğundan emin oluyoruz
                 if (dgvCihazListesi.Columns.Contains("colEdit") && dgvCihazListesi.Columns.Contains("colDelete"))
                 {
-                    dgvCihazListesi.Columns["colEdit"].DisplayIndex = dgvCihazListesi.Columns.Count - 2;
-                    dgvCihazListesi.Columns["colDelete"].DisplayIndex = dgvCihazListesi.Columns.Count - 1;
+                    dgvCihazListesi.Columns["colEdit"].DisplayIndex = dgvCihazListesi.Columns.Count - 2; // Toplam sütun sayısından 2 çıkararak en sona atıyoruz.
+                    dgvCihazListesi.Columns["colDelete"].DisplayIndex = dgvCihazListesi.Columns.Count - 1; // Toplam sütun sayısından 1 çıkararak en sona atıyoruz.
                 }
 
                 baglanti.Close();

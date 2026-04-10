@@ -22,7 +22,8 @@ namespace TechCheck_Final
             InitializeComponent();
         }
 
-        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TechCheckDB;Integrated Security=True");
+        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True
+");
 
         private void Form1_Load(object sender, EventArgs e)
         {
