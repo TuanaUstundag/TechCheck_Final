@@ -22,8 +22,12 @@ namespace TechCheck_Final
             InitializeComponent();
         }
 
+
         SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True
 ");
+
+        
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -72,11 +76,11 @@ namespace TechCheck_Final
 
             try
             {
-                // 1. Kod Üret
+               
                 Random rnd = new Random();
                 string kod = rnd.Next(100000, 999999).ToString();
 
-                // 2. Veritabanına Yaz ve Mail Çek
+               
                 baglanti.Open();
                 SqlCommand komutKod = new SqlCommand("UPDATE Kullanicilar SET KurtarmaKodu=@k1 WHERE KullaniciAdi=@p1", baglanti);
                 komutKod.Parameters.AddWithValue("@k1", kod);
@@ -94,13 +98,12 @@ namespace TechCheck_Final
                     return;
                 }
 
-                // ... (üst kısımlar aynı)
 
-                // 3. Mail Gönder (KODU BURADAN İTİBAREN GÜNCELLEDİM)
                 SmtpClient sc = new SmtpClient();
                 sc.Port = 587;
                 sc.Host = "smtp.gmail.com";
                 sc.EnableSsl = true;
+
                 sc.Credentials = new NetworkCredential("mustafakilkis739@gmail.com", "epzccctfecqtxbgc");
 
                 MailMessage mail = new MailMessage();
@@ -117,8 +120,7 @@ namespace TechCheck_Final
                 sc.Send(mail);
                 MessageBox.Show("Kurtarma kodu e-posta adresinize gönderildi!");
 
-                // ... (alt kısımlar aynı)
-                // 4. Kod Doğrulama
+
                 string girilenKod = Interaction.InputBox("Lütfen mailinize gelen 6 haneli kodu giriniz:", "Kod Doğrulama");
 
                 if (girilenKod == kod)
@@ -144,6 +146,11 @@ namespace TechCheck_Final
                 MessageBox.Show("Hata: " + ex.Message);
             }
             finally { if (baglanti.State == ConnectionState.Open) baglanti.Close(); }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

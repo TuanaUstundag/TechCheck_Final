@@ -50,9 +50,8 @@
             this.pictureBox1.BackgroundImage = global::TechCheck_Final.Properties.Resources.acilisresmi;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(521, 582);
+            this.pictureBox1.Size = new System.Drawing.Size(782, 895);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -62,10 +61,9 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(84, 253);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(126, 389);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(373, 65);
+            this.label1.Size = new System.Drawing.Size(557, 96);
             this.label1.TabIndex = 1;
             this.label1.Text = "Welcome Back!";
             // 
@@ -81,11 +79,11 @@
             this.panel1.Controls.Add(this.txtKullaniciAdi);
             this.panel1.Controls.Add(this.Login);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(515, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Location = new System.Drawing.Point(772, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(500, 582);
+            this.panel1.Size = new System.Drawing.Size(750, 895);
             this.panel1.TabIndex = 2;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnLogin
             // 
@@ -96,10 +94,9 @@
             this.btnLogin.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(143, 398);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogin.Location = new System.Drawing.Point(214, 612);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(218, 48);
+            this.btnLogin.Size = new System.Drawing.Size(327, 74);
             this.btnLogin.TabIndex = 9;
             this.btnLogin.Text = "Login";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -109,10 +106,9 @@
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Font = new System.Drawing.Font("Segoe UI", 7.8F);
             this.textBox3.ForeColor = System.Drawing.SystemColors.ActiveBorder;
-            this.textBox3.Location = new System.Drawing.Point(143, 267);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Location = new System.Drawing.Point(214, 411);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(218, 14);
+            this.textBox3.Size = new System.Drawing.Size(327, 21);
             this.textBox3.TabIndex = 8;
             this.textBox3.Text = "Password";
             // 
@@ -121,10 +117,9 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Font = new System.Drawing.Font("Segoe UI", 7.8F);
             this.textBox2.ForeColor = System.Drawing.SystemColors.ActiveBorder;
-            this.textBox2.Location = new System.Drawing.Point(143, 181);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Location = new System.Drawing.Point(214, 278);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(218, 14);
+            this.textBox2.Size = new System.Drawing.Size(327, 21);
             this.textBox2.TabIndex = 7;
             this.textBox2.Text = "Username";
             // 
@@ -133,10 +128,9 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.ActiveBorder;
-            this.textBox1.Location = new System.Drawing.Point(143, 142);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Location = new System.Drawing.Point(214, 218);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(218, 14);
+            this.textBox1.Size = new System.Drawing.Size(327, 21);
             this.textBox1.TabIndex = 6;
             this.textBox1.Text = "Welcome back! Please login to your account.";
             // 
@@ -144,10 +138,9 @@
             // 
             this.lblForgetPassword.AutoSize = true;
             this.lblForgetPassword.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
-            this.lblForgetPassword.Location = new System.Drawing.Point(274, 359);
-            this.lblForgetPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblForgetPassword.Location = new System.Drawing.Point(411, 552);
             this.lblForgetPassword.Name = "lblForgetPassword";
-            this.lblForgetPassword.Size = new System.Drawing.Size(92, 13);
+            this.lblForgetPassword.Size = new System.Drawing.Size(138, 20);
             this.lblForgetPassword.TabIndex = 5;
             this.lblForgetPassword.TabStop = true;
             this.lblForgetPassword.Text = "Forget Password?";
@@ -161,10 +154,9 @@
             this.chkRememberMe.CheckedState.BorderThickness = 0;
             this.chkRememberMe.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
             this.chkRememberMe.CheckMarkColor = System.Drawing.Color.WhiteSmoke;
-            this.chkRememberMe.Location = new System.Drawing.Point(143, 359);
-            this.chkRememberMe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkRememberMe.Location = new System.Drawing.Point(214, 552);
             this.chkRememberMe.Name = "chkRememberMe";
-            this.chkRememberMe.Size = new System.Drawing.Size(95, 17);
+            this.chkRememberMe.Size = new System.Drawing.Size(140, 24);
             this.chkRememberMe.TabIndex = 4;
             this.chkRememberMe.Text = "Remember Me";
             this.chkRememberMe.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
@@ -183,13 +175,13 @@
             this.txtSifre.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSifre.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtSifre.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSifre.Location = new System.Drawing.Point(143, 291);
-            this.txtSifre.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtSifre.Location = new System.Drawing.Point(214, 448);
+            this.txtSifre.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtSifre.Name = "txtSifre";
             this.txtSifre.PasswordChar = '*';
             this.txtSifre.PlaceholderText = "**********";
             this.txtSifre.SelectedText = "";
-            this.txtSifre.Size = new System.Drawing.Size(218, 39);
+            this.txtSifre.Size = new System.Drawing.Size(327, 60);
             this.txtSifre.TabIndex = 3;
             // 
             // txtKullaniciAdi
@@ -203,36 +195,34 @@
             this.txtKullaniciAdi.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtKullaniciAdi.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtKullaniciAdi.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtKullaniciAdi.Location = new System.Drawing.Point(143, 205);
-            this.txtKullaniciAdi.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtKullaniciAdi.Location = new System.Drawing.Point(214, 315);
+            this.txtKullaniciAdi.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtKullaniciAdi.Name = "txtKullaniciAdi";
             this.txtKullaniciAdi.PlaceholderText = "username@gmail.com";
             this.txtKullaniciAdi.SelectedText = "";
-            this.txtKullaniciAdi.Size = new System.Drawing.Size(218, 39);
+            this.txtKullaniciAdi.Size = new System.Drawing.Size(327, 60);
             this.txtKullaniciAdi.TabIndex = 2;
             // 
             // Login
             // 
             this.Login.AutoSize = true;
             this.Login.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Login.Location = new System.Drawing.Point(137, 89);
-            this.Login.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Login.Location = new System.Drawing.Point(206, 137);
             this.Login.Name = "Login";
-            this.Login.Size = new System.Drawing.Size(89, 37);
+            this.Login.Size = new System.Drawing.Size(127, 54);
             this.Login.TabIndex = 0;
             this.Login.Text = "Login";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1015, 582);
+            this.ClientSize = new System.Drawing.Size(1522, 895);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

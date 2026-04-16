@@ -14,15 +14,15 @@ namespace TechCheck_Final
     public partial class frmDuzenle : Form
     {
         public int cihazId;
-        public frmDuzenle(int id, string ad, string model, string seri, string ariza, string durum) // 1. Yeni bir constructor oluşturduk, içine düzenlemek istediğimiz cihazın bilgilerini parametre olarak alacak
+        public frmDuzenle(int id, string ad, string model, string seri, string ariza, string durum)  
         {
             InitializeComponent(); 
 
-            // 2. Dışarıdan gelen 'id' değerini yukarıdaki 'cihazId'ye atıyoruz
+            
             this.cihazId = id;
 
-            // Verileri kutulara doldur
-            txtMusteriAd.Text = ad; // 3. Gelen parametreleri ilgili textBox ve comboBox'lara atıyoruz
+           
+            txtMusteriAd.Text = ad; 
             txtCihazModel.Text = model;
             txtSeriNo.Text = seri;
             txtAriza.Text = ariza;
@@ -36,7 +36,7 @@ namespace TechCheck_Final
             {
                 if (baglanti.State == ConnectionState.Closed) baglanti.Open();
 
-                // 3. Sorgu aynı kalıyor, sonundaki @p6 bizim Id'miz olacak
+                
                 string sorgu = "UPDATE Cihazlar SET MusteriAd=@p1, CihazModel=@p2, SeriNo=@p3, Ariza=@p4, Durum=@p5 WHERE Id=@p6"; 
 
                 SqlCommand komut = new SqlCommand(sorgu, baglanti);
@@ -51,7 +51,7 @@ namespace TechCheck_Final
                 baglanti.Close();
 
                 MessageBox.Show("Kayıt başarıyla güncellendi!", "TechCheck", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close(); // Bu Pencereyi kapat
+                this.Close();
             }
             catch (Exception ex)
             {
