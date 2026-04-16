@@ -23,7 +23,8 @@ namespace TechCheck_Final
         }
 
 
-        SqlConnection baglanti = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\kerem\Documents\TechCheckDB.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True
+");
 
         
         
