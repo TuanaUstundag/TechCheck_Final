@@ -9,7 +9,8 @@ namespace TechCheck_Final
 	public partial class UC_Personeller : UserControl
 	{
 		// Veritabanı bağlantı cümlesi
-		SqlConnection baglanti = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\TechCheckDB.mdf;Integrated Security=True");
+		SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True
+");
 
 		public UC_Personeller()
 		{
