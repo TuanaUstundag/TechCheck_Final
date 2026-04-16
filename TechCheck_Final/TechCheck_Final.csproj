@@ -38,7 +38,7 @@
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+      <HintPath>..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
@@ -87,6 +87,18 @@
     <Compile Include="UC_CihazListesi.Designer.cs">
       <DependentUpon>UC_CihazListesi.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC_PersonelKarti.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_PersonelKarti.Designer.cs">
+      <DependentUpon>UC_PersonelKarti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_Personeller.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_Personeller.Designer.cs">
+      <DependentUpon>UC_Personeller.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC_YeniKayit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,6 +129,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC_CihazListesi.resx">
       <DependentUpon>UC_CihazListesi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_PersonelKarti.resx">
+      <DependentUpon>UC_PersonelKarti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_Personeller.resx">
+      <DependentUpon>UC_Personeller.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC_YeniKayit.resx">
       <DependentUpon>UC_YeniKayit.cs</DependentUpon>

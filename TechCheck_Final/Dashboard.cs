@@ -1,50 +1,52 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace TechCheck_Final
 {
-    public partial class Dashboard : Form
-    {
-        public Dashboard()
-        {
-            InitializeComponent();
-        }
+	public partial class Dashboard : Form
+	{
+		public Dashboard()
+		{
+			InitializeComponent();
+		}
 
-        private void btnAnasayfa_Click(object sender, EventArgs e)
-        {
-            UC_Anasayfa uc = new UC_Anasayfa();
-            addUserControl(uc);
-        }
+		// Sayfaları panelin içine yerleştiren yardımcı metod
+		private void addUserControl(UserControl userControl)
+		{
+			userControl.Dock = DockStyle.Fill;
+			pnlContainer.Controls.Clear();
+			pnlContainer.Controls.Add(userControl);
+			userControl.BringToFront();
+		}
 
-        private void btnCihazlistesi_Click(object sender, EventArgs e)
-        {
-            UC_CihazListesi uc = new UC_CihazListesi();
-            addUserControl(uc);
-        }
-        private void addUserControl(UserControl userControl)
-        {
-            userControl.Dock = DockStyle.Fill;
-            pnlContainer.Controls.Clear();
-            pnlContainer.Controls.Add(userControl);
-            userControl.BringToFront();
-        }
+		private void btnAnasayfa_Click(object sender, EventArgs e)
+		{
+			addUserControl(new UC_Anasayfa());
+		}
 
-        private void btnYenikayit_Click(object sender, EventArgs e)
-        {
-            // Daha önce yazdığımız o metodu çağırıyoruz
-            addUserControl(new UC_YeniKayit());
-        }
+		private void btnCihazlistesi_Click(object sender, EventArgs e)
+		{
+			addUserControl(new UC_CihazListesi());
+		}
 
-        private void pnlContainer_Paint(object sender, PaintEventArgs e)
-        {
+		private void btnYenikayit_Click(object sender, EventArgs e)
+		{
+			addUserControl(new UC_YeniKayit());
+		}
 
-        }
-    }
+		// PERSONELLER BUTONU (Tasarımda bu isme sahip olduğundan emin ol)
+		private void btnPersoneller_Click(object sender, EventArgs e)
+		{
+			addUserControl(new UC_Personeller());
+		}
+
+		public SqlConnection baglanti()
+		{
+			// Buradaki 'Data Source' kısmını kendi SQL Server adına göre güncellemelisin!
+			SqlConnection baglan = new SqlConnection(@"Data Source=.;Initial Catalog=TechCheckDB;Integrated Security=True");
+			baglan.Open();
+			return baglan;
+		}
+	}
 }
