@@ -73,6 +73,12 @@
     <Compile Include="frmDuzenle.Designer.cs">
       <DependentUpon>frmDuzenle.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPersonelEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPersonelEkle.Designer.cs">
+      <DependentUpon>frmPersonelEkle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UC_Anasayfa.cs">
@@ -86,6 +92,12 @@
     </Compile>
     <Compile Include="UC_CihazListesi.Designer.cs">
       <DependentUpon>UC_CihazListesi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_Personeller.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_Personeller.Designer.cs">
+      <DependentUpon>UC_Personeller.cs</DependentUpon>
     </Compile>
     <Compile Include="UC_YeniKayit.cs">
       <SubType>UserControl</SubType>
@@ -102,6 +114,9 @@
     <EmbeddedResource Include="frmDuzenle.resx">
       <DependentUpon>frmDuzenle.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPersonelEkle.resx">
+      <DependentUpon>frmPersonelEkle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -117,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC_CihazListesi.resx">
       <DependentUpon>UC_CihazListesi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_Personeller.resx">
+      <DependentUpon>UC_Personeller.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC_YeniKayit.resx">
       <DependentUpon>UC_YeniKayit.cs</DependentUpon>

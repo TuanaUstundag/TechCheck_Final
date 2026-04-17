@@ -44,7 +44,8 @@ namespace TechCheck_Final
 		public SqlConnection baglanti()
 		{
 			// Buradaki 'Data Source' kısmını kendi SQL Server adına göre güncellemelisin!
-			SqlConnection baglan = new SqlConnection(@"Data Source=.;Initial Catalog=TechCheckDB;Integrated Security=True");
+			SqlConnection baglan = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True
+");
 			baglan.Open();
 			return baglan;
 		}
