@@ -61,5 +61,9 @@ namespace TechCheck_Final
         
     }
 
+        private void frmDuzenle_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

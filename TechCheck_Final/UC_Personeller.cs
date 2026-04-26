@@ -27,11 +27,10 @@ namespace TechCheck_Final
 
         private void UC_Personeller_Load(object sender, EventArgs e)
         {
-            // Tasarım ayarımız: Yazıları dikeyde ortala
+            
             dgvPersoneller.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            // Sahte verileri (Kristin vs.) sildik! 
-            // Form açılır açılmaz direkt SQL'deki GERÇEK verileri listele diyoruz:
+           
             PersonelListele();
         }
 
@@ -39,11 +38,10 @@ namespace TechCheck_Final
         {
             frmPersonelEkle yeniForm = new frmPersonelEkle();
 
-            // ShowDialog sayesinde program burada 'durur'. 
-            // Sen formu kapatana kadar aşağıdaki satıra geçmez.
+            
             yeniForm.ShowDialog();
 
-            // İŞTE ÇÖZÜM: Form kapandığı an (yani tam burada) listeleme metodunu çağırıyoruz
+            
             PersonelListele();
         }
 
@@ -62,19 +60,19 @@ namespace TechCheck_Final
                 string adMail = oku["AdSoyad"].ToString() + "\n" + oku["Email"].ToString();
                 string veritabanindakiResimYolu = oku["ResimYolu"].ToString();
 
-                // Önce varsayılan (default) avatarımızı elimize alıyoruz
+               
                 System.Drawing.Image profilResmi = Properties.Resources.avatar_1;
 
-                // Eğer SQL'den bir yol gelmişse ve o yol bilgisayarda GERÇEKTEN varsa resmi değiştir:
+                
                 if (!string.IsNullOrEmpty(veritabanindakiResimYolu) && System.IO.File.Exists(veritabanindakiResimYolu))
                 {
                     profilResmi = System.Drawing.Image.FromFile(veritabanindakiResimYolu);
                 }
 
-                // Şimdi elimizdeki (gerçek veya varsayılan) resmi tabloya basıyoruz:
+                
                 int satirNo = dgvPersoneller.Rows.Add(false, profilResmi, adMail, oku["Gorev"].ToString(), "08:00 h", oku["Maas"].ToString(), oku["Telefon"].ToString());
 
-                // Silme işlemi için ID'yi arka cebe atmayı unutmuyoruz:
+               
                 dgvPersoneller.Rows[satirNo].Tag = oku["Id"];
             }
 
@@ -87,22 +85,16 @@ namespace TechCheck_Final
 ");
             bool silinenVarMi = false;
 
-            // 1. Veritabanı kapısını baştan açıyoruz (Çünkü içeride seri operasyon yapacağız)
             baglanti.Open();
 
-            // 2. DİKKAT: Tablodan çoklu silme yaparken her zaman EN ALTTAN YUKARI doğru saymalıyız (i--). 
-            // Yoksa üstten silince alttakilerin sıra numarası kayar ve program hata verir.
             for (int i = dgvPersoneller.Rows.Count - 1; i >= 0; i--)
             {
-                // O anki satırın kutucuğu işaretli mi? (True / False)
                 bool isChecked = Convert.ToBoolean(dgvPersoneller.Rows[i].Cells["colSec"].Value);
 
                 if (isChecked == true)
                 {
-                    // Adamın arka cebinden (Tag) SQL'deki o benzersiz ID'sini alıyoruz
                     int silinecekId = Convert.ToInt32(dgvPersoneller.Rows[i].Tag);
 
-                    // SQL'e "Bu ID numaralı adamı kalıcı olarak yok et" emrini veriyoruz
                     SqlCommand komut = new SqlCommand("DELETE FROM Personeller WHERE Id = @p1", baglanti);
                     komut.Parameters.AddWithValue("@p1", silinecekId);
                     komut.ExecuteNonQuery();
@@ -111,21 +103,99 @@ namespace TechCheck_Final
                 }
             }
 
-            // 3. İşimizi bitirip mutfak kapısını kilitliyoruz
             baglanti.Close();
 
-            // 4. Operasyon sonucunu ekrana yansıt
             if (silinenVarMi == true)
             {
                 MessageBox.Show("Seçili personeller silindi🗑️", "İşlem Başarılı");
 
-                // ÖNEMLİ: Silinen adamların ekrandan da gitmesi için listeyi tazelemek zorundayız!
                 PersonelListele();
             }
             else
             {
                 MessageBox.Show("Silebilmek için önce yanlarındaki kutucuklardan en az birini seçmeniz lazım", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True");
+
+            try
+            {
+                dgvPersoneller.Rows.Clear(); 
+
+                baglanti.Open();
+
+                string sorgu = "SELECT * FROM Personeller WHERE AdSoyad LIKE @aranan";
+                SqlCommand komut = new SqlCommand(sorgu, baglanti);
+                komut.Parameters.AddWithValue("@aranan", "%" + txtArama.Text + "%");
+
+                SqlDataReader oku = komut.ExecuteReader();
+
+                while (oku.Read())
+                {
+                    string adMail = oku["AdSoyad"].ToString() + "\n" + oku["Email"].ToString();
+                    string veritabanindakiResimYolu = oku["ResimYolu"].ToString();
+
+                    System.Drawing.Image profilResmi = Properties.Resources.avatar_1;
+
+                    if (!string.IsNullOrEmpty(veritabanindakiResimYolu) && System.IO.File.Exists(veritabanindakiResimYolu))
+                    {
+                        profilResmi = System.Drawing.Image.FromFile(veritabanindakiResimYolu);
+                    }
+
+                    int satirNo = dgvPersoneller.Rows.Add(false, profilResmi, adMail, oku["Gorev"].ToString(), "08:00 h", oku["Maas"].ToString(), oku["Telefon"].ToString());
+                    dgvPersoneller.Rows[satirNo].Tag = oku["Id"];
+                }
+
+                baglanti.Close();
+            }
+            catch (Exception ex)
+            {
+                if (baglanti.State == ConnectionState.Open) baglanti.Close();
+                MessageBox.Show("Arama hatası: " + ex.Message);
+            }
+        }
+
+        private void btnPersonelDuzenle_Click(object sender, EventArgs e)
+        {
+            
+            int isaretlenenSayisi = 0;
+            int seciliId = -1;
+
+            foreach (DataGridViewRow satir in dgvPersoneller.Rows)
+            {
+                bool isChecked = Convert.ToBoolean(satir.Cells["colSec"].Value);
+                if (isChecked)
+                {
+                    isaretlenenSayisi++;
+                    seciliId = Convert.ToInt32(satir.Tag);
+                }
+            }
+
+           
+            if (isaretlenenSayisi == 0)
+            {
+                MessageBox.Show("Düzenlemek için önce bir personel seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+           
+            if (isaretlenenSayisi > 1)
+            {
+                MessageBox.Show("Aynı anda sadece 1 personel düzenlenebilir.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+           
+            frmPersonelDuzenle duzenleForm = new frmPersonelDuzenle();
+            duzenleForm.PersonelId = seciliId;
+            duzenleForm.ShowDialog();
+
+            
+            PersonelListele();
+        
         }
     }
 }

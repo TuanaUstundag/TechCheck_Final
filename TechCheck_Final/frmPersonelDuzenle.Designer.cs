@@ -1,6 +1,6 @@
 ﻿namespace TechCheck_Final
 {
-    partial class frmPersonelEkle
+    partial class frmPersonelDuzenle
     {
         /// <summary>
         /// Required designer variable.
@@ -52,12 +52,12 @@
             this.guna2HtmlLabel1.AutoSize = false;
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(350, 111);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(323, 152);
             this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(741, 54);
-            this.guna2HtmlLabel1.TabIndex = 1;
-            this.guna2HtmlLabel1.Text = "Yeni Personel Kaydı";
+            this.guna2HtmlLabel1.TabIndex = 3;
+            this.guna2HtmlLabel1.Text = "Personel bilgilerini Güncelle";
             // 
             // guna2ShadowPanel1
             // 
@@ -76,13 +76,13 @@
             this.guna2ShadowPanel1.Controls.Add(this.txtMaas);
             this.guna2ShadowPanel1.Controls.Add(this.txtAdSoyad);
             this.guna2ShadowPanel1.FillColor = System.Drawing.Color.White;
-            this.guna2ShadowPanel1.Location = new System.Drawing.Point(328, 186);
+            this.guna2ShadowPanel1.Location = new System.Drawing.Point(301, 227);
             this.guna2ShadowPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2ShadowPanel1.Name = "guna2ShadowPanel1";
             this.guna2ShadowPanel1.Radius = 20;
             this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel1.Size = new System.Drawing.Size(1249, 691);
-            this.guna2ShadowPanel1.TabIndex = 2;
+            this.guna2ShadowPanel1.TabIndex = 4;
             // 
             // btnResimSec
             // 
@@ -101,7 +101,7 @@
             this.btnResimSec.Size = new System.Drawing.Size(268, 67);
             this.btnResimSec.TabIndex = 18;
             this.btnResimSec.Text = "Resim seç";
-            this.btnResimSec.Click += new System.EventHandler(this.btnResimSec_Click);
+            this.btnResimSec.Click += new System.EventHandler(this.btnResimSec_Click_1);
             // 
             // pbResim
             // 
@@ -202,7 +202,7 @@
             this.btnKaydet.Size = new System.Drawing.Size(316, 81);
             this.btnKaydet.TabIndex = 10;
             this.btnKaydet.Text = "Kaydet";
-            this.btnKaydet.Click += new System.EventHandler(this.btnKaydet_Click);
+            this.btnKaydet.Click += new System.EventHandler(this.btnKaydet_Click_1);
             // 
             // label2
             // 
@@ -286,16 +286,16 @@
             this.txtAdSoyad.Size = new System.Drawing.Size(436, 60);
             this.txtAdSoyad.TabIndex = 0;
             // 
-            // frmPersonelEkle
+            // frmPersonelDuzenle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1851, 1069);
+            this.ClientSize = new System.Drawing.Size(1850, 1070);
             this.Controls.Add(this.guna2HtmlLabel1);
             this.Controls.Add(this.guna2ShadowPanel1);
-            this.Name = "frmPersonelEkle";
-            this.Text = "frmPersonelEkle";
-            this.Load += new System.EventHandler(this.frmPersonelEkle_Load);
+            this.Name = "frmPersonelDuzenle";
+            this.Text = "frmPersonelDuzenle";
+            this.Load += new System.EventHandler(this.frmPersonelDuzenle_Load);
             this.guna2ShadowPanel1.ResumeLayout(false);
             this.guna2ShadowPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbResim)).EndInit();
@@ -307,6 +307,11 @@
 
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel1;
+        private Guna.UI2.WinForms.Guna2Button btnResimSec;
+        private Guna.UI2.WinForms.Guna2PictureBox pbResim;
+        private Guna.UI2.WinForms.Guna2TextBox txtEmail;
+        private Guna.UI2.WinForms.Guna2TextBox txtTelefon;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2Button btnKaydet;
@@ -315,10 +320,5 @@
         private Guna.UI2.WinForms.Guna2TextBox txtGorev;
         private Guna.UI2.WinForms.Guna2TextBox txtMaas;
         private Guna.UI2.WinForms.Guna2TextBox txtAdSoyad;
-        private Guna.UI2.WinForms.Guna2TextBox txtEmail;
-        private Guna.UI2.WinForms.Guna2TextBox txtTelefon;
-        private System.Windows.Forms.Label label5;
-        private Guna.UI2.WinForms.Guna2Button btnResimSec;
-        private Guna.UI2.WinForms.Guna2PictureBox pbResim;
     }
 }
