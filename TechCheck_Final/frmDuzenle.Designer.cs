@@ -49,13 +49,11 @@
             this.guna2HtmlLabel1.AutoSize = false;
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(113, 40);
-            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(170, 62);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(494, 35);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(741, 54);
             this.guna2HtmlLabel1.TabIndex = 1;
             this.guna2HtmlLabel1.Text = "Kaydı Düzenle";
-            
             // 
             // guna2ShadowPanel1
             // 
@@ -72,22 +70,20 @@
             this.guna2ShadowPanel1.Controls.Add(this.txtAriza);
             this.guna2ShadowPanel1.Controls.Add(this.txtMusteriAd);
             this.guna2ShadowPanel1.FillColor = System.Drawing.Color.White;
-            this.guna2ShadowPanel1.Location = new System.Drawing.Point(98, 89);
-            this.guna2ShadowPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2ShadowPanel1.Location = new System.Drawing.Point(147, 137);
             this.guna2ShadowPanel1.Name = "guna2ShadowPanel1";
             this.guna2ShadowPanel1.Radius = 20;
             this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
-            this.guna2ShadowPanel1.Size = new System.Drawing.Size(796, 396);
+            this.guna2ShadowPanel1.Size = new System.Drawing.Size(1194, 609);
             this.guna2ShadowPanel1.TabIndex = 2;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(32, 275);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(48, 423);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 21);
+            this.label5.Size = new System.Drawing.Size(169, 32);
             this.label5.TabIndex = 14;
             this.label5.Text = "Cihaz Durumu";
             // 
@@ -95,10 +91,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(32, 214);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(48, 329);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(64, 21);
+            this.label4.Size = new System.Drawing.Size(94, 32);
             this.label4.TabIndex = 13;
             this.label4.Text = "Seri No";
             // 
@@ -106,10 +101,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(488, 61);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(732, 94);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 21);
+            this.label3.Size = new System.Drawing.Size(165, 32);
             this.label3.TabIndex = 12;
             this.label3.Text = "Arıza Durumu";
             // 
@@ -124,10 +118,9 @@
             this.btnGuncelle.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnGuncelle.ForeColor = System.Drawing.Color.White;
             this.btnGuncelle.Image = global::TechCheck_Final.Properties.Resources.bookmark;
-            this.btnGuncelle.Location = new System.Drawing.Point(514, 292);
-            this.btnGuncelle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGuncelle.Location = new System.Drawing.Point(771, 449);
             this.btnGuncelle.Name = "btnGuncelle";
-            this.btnGuncelle.Size = new System.Drawing.Size(211, 53);
+            this.btnGuncelle.Size = new System.Drawing.Size(316, 82);
             this.btnGuncelle.TabIndex = 10;
             this.btnGuncelle.Text = "Güncelle";
             this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
@@ -136,10 +129,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(32, 147);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(48, 226);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 21);
+            this.label2.Size = new System.Drawing.Size(83, 32);
             this.label2.TabIndex = 9;
             this.label2.Text = "Model";
             // 
@@ -147,10 +139,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(32, 80);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(48, 123);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 21);
+            this.label1.Size = new System.Drawing.Size(117, 32);
             this.label1.TabIndex = 8;
             this.label1.Text = "Ad Soyad";
             // 
@@ -170,10 +161,9 @@
             "Tamirde",
             "Parça  Bekliyor",
             "Teslim Edildi"});
-            this.cmbDurum.Location = new System.Drawing.Point(35, 316);
-            this.cmbDurum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbDurum.Location = new System.Drawing.Point(52, 486);
             this.cmbDurum.Name = "cmbDurum";
-            this.cmbDurum.Size = new System.Drawing.Size(260, 36);
+            this.cmbDurum.Size = new System.Drawing.Size(388, 36);
             this.cmbDurum.TabIndex = 7;
             // 
             // txtCihazModel
@@ -189,12 +179,12 @@
             this.txtCihazModel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtCihazModel.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtCihazModel.IconLeft = global::TechCheck_Final.Properties.Resources.mobile_notch;
-            this.txtCihazModel.Location = new System.Drawing.Point(131, 138);
-            this.txtCihazModel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtCihazModel.Location = new System.Drawing.Point(196, 212);
+            this.txtCihazModel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtCihazModel.Name = "txtCihazModel";
             this.txtCihazModel.PlaceholderText = "Örn: iPhone 13 Pro";
             this.txtCihazModel.SelectedText = "";
-            this.txtCihazModel.Size = new System.Drawing.Size(291, 39);
+            this.txtCihazModel.Size = new System.Drawing.Size(436, 60);
             this.txtCihazModel.TabIndex = 5;
             // 
             // txtSeriNo
@@ -209,12 +199,12 @@
             this.txtSeriNo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSeriNo.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtSeriNo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSeriNo.Location = new System.Drawing.Point(131, 206);
-            this.txtSeriNo.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtSeriNo.Location = new System.Drawing.Point(196, 317);
+            this.txtSeriNo.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtSeriNo.Name = "txtSeriNo";
             this.txtSeriNo.PlaceholderText = "IMEI veya Seri Numarası";
             this.txtSeriNo.SelectedText = "";
-            this.txtSeriNo.Size = new System.Drawing.Size(291, 39);
+            this.txtSeriNo.Size = new System.Drawing.Size(436, 60);
             this.txtSeriNo.TabIndex = 4;
             // 
             // txtAriza
@@ -229,13 +219,13 @@
             this.txtAriza.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtAriza.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtAriza.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtAriza.Location = new System.Drawing.Point(491, 97);
-            this.txtAriza.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtAriza.Location = new System.Drawing.Point(736, 149);
+            this.txtAriza.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtAriza.Multiline = true;
             this.txtAriza.Name = "txtAriza";
             this.txtAriza.PlaceholderText = "Cihazın nesi var?";
             this.txtAriza.SelectedText = "";
-            this.txtAriza.Size = new System.Drawing.Size(260, 149);
+            this.txtAriza.Size = new System.Drawing.Size(390, 229);
             this.txtAriza.TabIndex = 3;
             // 
             // txtMusteriAd
@@ -251,24 +241,24 @@
             this.txtMusteriAd.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtMusteriAd.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtMusteriAd.IconLeft = global::TechCheck_Final.Properties.Resources.user;
-            this.txtMusteriAd.Location = new System.Drawing.Point(131, 72);
-            this.txtMusteriAd.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtMusteriAd.Location = new System.Drawing.Point(196, 111);
+            this.txtMusteriAd.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtMusteriAd.Name = "txtMusteriAd";
             this.txtMusteriAd.PlaceholderText = "Ad Soyad";
             this.txtMusteriAd.SelectedText = "";
-            this.txtMusteriAd.Size = new System.Drawing.Size(291, 39);
+            this.txtMusteriAd.Size = new System.Drawing.Size(436, 60);
             this.txtMusteriAd.TabIndex = 0;
             // 
             // frmDuzenle
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 631);
+            this.ClientSize = new System.Drawing.Size(1490, 971);
             this.Controls.Add(this.guna2HtmlLabel1);
             this.Controls.Add(this.guna2ShadowPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmDuzenle";
             this.Text = "frmDuzenle";
+            this.Load += new System.EventHandler(this.frmDuzenle_Load);
             this.guna2ShadowPanel1.ResumeLayout(false);
             this.guna2ShadowPanel1.PerformLayout();
             this.ResumeLayout(false);

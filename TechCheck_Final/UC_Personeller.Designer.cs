@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.txtArama = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnPersonelEkle = new Guna.UI2.WinForms.Guna2Button();
             this.dgvPersoneller = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.btnPersonelSil = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.colSec = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colResim = new System.Windows.Forms.DataGridViewImageColumn();
             this.AdSoyad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,31 +44,31 @@
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Maas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnPersonelSil = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnPersonelDuzenle = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersoneller)).BeginInit();
             this.guna2Panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // guna2TextBox1
+            // txtArama
             // 
-            this.guna2TextBox1.BorderRadius = 15;
-            this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox1.DefaultText = "";
-            this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Location = new System.Drawing.Point(18, 25);
-            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.guna2TextBox1.Name = "guna2TextBox1";
-            this.guna2TextBox1.PlaceholderText = "🔍 Personel Ara...";
-            this.guna2TextBox1.SelectedText = "";
-            this.guna2TextBox1.Size = new System.Drawing.Size(1248, 60);
-            this.guna2TextBox1.TabIndex = 0;
+            this.txtArama.BorderRadius = 15;
+            this.txtArama.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtArama.DefaultText = "";
+            this.txtArama.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtArama.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtArama.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtArama.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtArama.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtArama.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtArama.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtArama.Location = new System.Drawing.Point(18, 25);
+            this.txtArama.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtArama.Name = "txtArama";
+            this.txtArama.PlaceholderText = "🔍 Personel Ara...";
+            this.txtArama.SelectedText = "";
+            this.txtArama.Size = new System.Drawing.Size(973, 60);
+            this.txtArama.TabIndex = 0;
+            this.txtArama.TextChanged += new System.EventHandler(this.guna2TextBox1_TextChanged);
             // 
             // btnPersonelEkle
             // 
@@ -79,7 +81,7 @@
             this.btnPersonelEkle.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
             this.btnPersonelEkle.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnPersonelEkle.ForeColor = System.Drawing.Color.White;
-            this.btnPersonelEkle.Location = new System.Drawing.Point(1343, 23);
+            this.btnPersonelEkle.Location = new System.Drawing.Point(1191, 23);
             this.btnPersonelEkle.Name = "btnPersonelEkle";
             this.btnPersonelEkle.Size = new System.Drawing.Size(160, 62);
             this.btnPersonelEkle.TabIndex = 1;
@@ -89,17 +91,17 @@
             // dgvPersoneller
             // 
             this.dgvPersoneller.AllowUserToAddRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            this.dgvPersoneller.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvPersoneller.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPersoneller.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPersoneller.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPersoneller.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPersoneller.ColumnHeadersHeight = 40;
             this.dgvPersoneller.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvPersoneller.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -110,14 +112,14 @@
             this.Id,
             this.Maas,
             this.Telefon});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPersoneller.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPersoneller.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPersoneller.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPersoneller.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.dgvPersoneller.Location = new System.Drawing.Point(0, 100);
@@ -150,6 +152,36 @@
             this.dgvPersoneller.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
          
             // 
+            // btnPersonelSil
+            // 
+            this.btnPersonelSil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPersonelSil.BorderRadius = 20;
+            this.btnPersonelSil.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnPersonelSil.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnPersonelSil.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnPersonelSil.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnPersonelSil.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
+            this.btnPersonelSil.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnPersonelSil.ForeColor = System.Drawing.Color.White;
+            this.btnPersonelSil.Location = new System.Drawing.Point(1390, 23);
+            this.btnPersonelSil.Name = "btnPersonelSil";
+            this.btnPersonelSil.Size = new System.Drawing.Size(160, 62);
+            this.btnPersonelSil.TabIndex = 4;
+            this.btnPersonelSil.Text = "-  Personel Sil";
+            this.btnPersonelSil.Click += new System.EventHandler(this.btnPersonelSil_Click);
+            // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.Controls.Add(this.btnPersonelDuzenle);
+            this.guna2Panel1.Controls.Add(this.txtArama);
+            this.guna2Panel1.Controls.Add(this.btnPersonelSil);
+            this.guna2Panel1.Controls.Add(this.btnPersonelEkle);
+            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.Size = new System.Drawing.Size(1841, 100);
+            this.guna2Panel1.TabIndex = 5;
+            // 
             // colSec
             // 
             this.colSec.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -172,8 +204,9 @@
             // AdSoyad
             // 
             this.AdSoyad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.AdSoyad.DefaultCellStyle = dataGridViewCellStyle7;
+            this.AdSoyad.DataPropertyName = "MusteriAd";
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.AdSoyad.DefaultCellStyle = dataGridViewCellStyle3;
             this.AdSoyad.FillWeight = 463.6364F;
             this.AdSoyad.HeaderText = "AdSoyad";
             this.AdSoyad.MinimumWidth = 8;
@@ -213,34 +246,23 @@
             this.Telefon.MinimumWidth = 8;
             this.Telefon.Name = "Telefon";
             // 
-            // btnPersonelSil
+            // btnPersonelDuzenle
             // 
-            this.btnPersonelSil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPersonelSil.BorderRadius = 20;
-            this.btnPersonelSil.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnPersonelSil.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnPersonelSil.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnPersonelSil.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPersonelSil.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
-            this.btnPersonelSil.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnPersonelSil.ForeColor = System.Drawing.Color.White;
-            this.btnPersonelSil.Location = new System.Drawing.Point(1542, 23);
-            this.btnPersonelSil.Name = "btnPersonelSil";
-            this.btnPersonelSil.Size = new System.Drawing.Size(160, 62);
-            this.btnPersonelSil.TabIndex = 4;
-            this.btnPersonelSil.Text = "-  Personel Sil";
-            this.btnPersonelSil.Click += new System.EventHandler(this.btnPersonelSil_Click);
-            // 
-            // guna2Panel1
-            // 
-            this.guna2Panel1.Controls.Add(this.guna2TextBox1);
-            this.guna2Panel1.Controls.Add(this.btnPersonelSil);
-            this.guna2Panel1.Controls.Add(this.btnPersonelEkle);
-            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(1841, 100);
-            this.guna2Panel1.TabIndex = 5;
+            this.btnPersonelDuzenle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPersonelDuzenle.BorderRadius = 20;
+            this.btnPersonelDuzenle.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnPersonelDuzenle.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnPersonelDuzenle.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnPersonelDuzenle.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnPersonelDuzenle.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
+            this.btnPersonelDuzenle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnPersonelDuzenle.ForeColor = System.Drawing.Color.White;
+            this.btnPersonelDuzenle.Location = new System.Drawing.Point(1588, 23);
+            this.btnPersonelDuzenle.Name = "btnPersonelDuzenle";
+            this.btnPersonelDuzenle.Size = new System.Drawing.Size(178, 62);
+            this.btnPersonelDuzenle.TabIndex = 5;
+            this.btnPersonelDuzenle.Text = "Personel Düzenle";
+            this.btnPersonelDuzenle.Click += new System.EventHandler(this.btnPersonelDuzenle_Click);
             // 
             // UC_Personeller
             // 
@@ -261,7 +283,7 @@
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+        private Guna.UI2.WinForms.Guna2TextBox txtArama;
         private Guna.UI2.WinForms.Guna2Button btnPersonelEkle;
         private Guna.UI2.WinForms.Guna2DataGridView dgvPersoneller;
         private Guna.UI2.WinForms.Guna2Button btnPersonelSil;
@@ -273,5 +295,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Maas;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefon;
+        private Guna.UI2.WinForms.Guna2Button btnPersonelDuzenle;
     }
 }
