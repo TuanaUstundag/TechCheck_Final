@@ -148,7 +148,7 @@
             this.dgvPersoneller.ThemeStyle.RowsStyle.Height = 70;
             this.dgvPersoneller.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvPersoneller.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dgvPersoneller.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPersoneller_CellContentClick);
+         
             // 
             // colSec
             // 

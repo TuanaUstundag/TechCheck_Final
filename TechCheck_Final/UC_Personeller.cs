@@ -11,120 +11,108 @@ using System.Windows.Forms;
 
 namespace TechCheck_Final
 {
-    
     public partial class UC_Personeller : UserControl
     {
+
+        private void dgvPersoneller_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Burayı boş bırakabilirsin, sadece hata gitmesi için ekliyoruz.
+        }
+        // Bağlantı adresini buraya sabitliyoruz ki her yerde tek tek değiştirmek zorunda kalma
+        // Satırın sonuna TrustServerCertificate=True eklediğinden emin ol:
+        string baglantiYolu = @"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=mnjrosan;Trusted_Connection=True;TrustServerCertificate=True";
+
         public UC_Personeller()
         {
             InitializeComponent();
         }
 
-        private void dgvPersoneller_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-            
-        }
-
         private void UC_Personeller_Load(object sender, EventArgs e)
         {
-            // Tasarım ayarımız: Yazıları dikeyde ortala
             dgvPersoneller.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
-            // Sahte verileri (Kristin vs.) sildik! 
-            // Form açılır açılmaz direkt SQL'deki GERÇEK verileri listele diyoruz:
             PersonelListele();
         }
 
         private void btnPersonelEkle_Click(object sender, EventArgs e)
         {
             frmPersonelEkle yeniForm = new frmPersonelEkle();
-
-            // ShowDialog sayesinde program burada 'durur'. 
-            // Sen formu kapatana kadar aşağıdaki satıra geçmez.
             yeniForm.ShowDialog();
-
-            // İŞTE ÇÖZÜM: Form kapandığı an (yani tam burada) listeleme metodunu çağırıyoruz
-            PersonelListele();
+            PersonelListele(); // Form kapanınca listeyi tazele
         }
 
         public void PersonelListele()
         {
-            SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True
-");
-            dgvPersoneller.Rows.Clear();
-
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("SELECT * FROM Personeller", baglanti);
-            SqlDataReader oku = komut.ExecuteReader();
-
-            while (oku.Read())
+            try
             {
-                string adMail = oku["AdSoyad"].ToString() + "\n" + oku["Email"].ToString();
-                string veritabanindakiResimYolu = oku["ResimYolu"].ToString();
+                SqlConnection baglanti = new SqlConnection(baglantiYolu);
+                dgvPersoneller.Rows.Clear();
 
-                // Önce varsayılan (default) avatarımızı elimize alıyoruz
-                System.Drawing.Image profilResmi = Properties.Resources.avatar_1;
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("SELECT * FROM Personeller", baglanti);
+                SqlDataReader oku = komut.ExecuteReader();
 
-                // Eğer SQL'den bir yol gelmişse ve o yol bilgisayarda GERÇEKTEN varsa resmi değiştir:
-                if (!string.IsNullOrEmpty(veritabanindakiResimYolu) && System.IO.File.Exists(veritabanindakiResimYolu))
+                while (oku.Read())
                 {
-                    profilResmi = System.Drawing.Image.FromFile(veritabanindakiResimYolu);
+                    string adMail = oku["AdSoyad"].ToString() + "\n" + oku["Email"].ToString();
+                    string veritabanindakiResimYolu = oku["ResimYolu"].ToString();
+
+                    System.Drawing.Image profilResmi = Properties.Resources.avatar_1;
+
+                    if (!string.IsNullOrEmpty(veritabanindakiResimYolu) && System.IO.File.Exists(veritabanindakiResimYolu))
+                    {
+                        profilResmi = System.Drawing.Image.FromFile(veritabanindakiResimYolu);
+                    }
+
+                    int satirNo = dgvPersoneller.Rows.Add(false, profilResmi, adMail, oku["Gorev"].ToString(), "08:00 h", oku["Maas"].ToString(), oku["Telefon"].ToString());
+                    dgvPersoneller.Rows[satirNo].Tag = oku["Id"];
                 }
-
-                // Şimdi elimizdeki (gerçek veya varsayılan) resmi tabloya basıyoruz:
-                int satirNo = dgvPersoneller.Rows.Add(false, profilResmi, adMail, oku["Gorev"].ToString(), "08:00 h", oku["Maas"].ToString(), oku["Telefon"].ToString());
-
-                // Silme işlemi için ID'yi arka cebe atmayı unutmuyoruz:
-                dgvPersoneller.Rows[satirNo].Tag = oku["Id"];
+                baglanti.Close();
             }
-
-            baglanti.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Listeleme hatası: " + ex.Message);
+            }
         }
 
         private void btnPersonelSil_Click(object sender, EventArgs e)
         {
-            SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True
-");
+            SqlConnection baglanti = new SqlConnection(baglantiYolu);
             bool silinenVarMi = false;
 
-            // 1. Veritabanı kapısını baştan açıyoruz (Çünkü içeride seri operasyon yapacağız)
-            baglanti.Open();
-
-            // 2. DİKKAT: Tablodan çoklu silme yaparken her zaman EN ALTTAN YUKARI doğru saymalıyız (i--). 
-            // Yoksa üstten silince alttakilerin sıra numarası kayar ve program hata verir.
-            for (int i = dgvPersoneller.Rows.Count - 1; i >= 0; i--)
+            try
             {
-                // O anki satırın kutucuğu işaretli mi? (True / False)
-                bool isChecked = Convert.ToBoolean(dgvPersoneller.Rows[i].Cells["colSec"].Value);
+                baglanti.Open();
 
-                if (isChecked == true)
+                for (int i = dgvPersoneller.Rows.Count - 1; i >= 0; i--)
                 {
-                    // Adamın arka cebinden (Tag) SQL'deki o benzersiz ID'sini alıyoruz
-                    int silinecekId = Convert.ToInt32(dgvPersoneller.Rows[i].Tag);
+                    bool isChecked = Convert.ToBoolean(dgvPersoneller.Rows[i].Cells["colSec"].Value);
 
-                    // SQL'e "Bu ID numaralı adamı kalıcı olarak yok et" emrini veriyoruz
-                    SqlCommand komut = new SqlCommand("DELETE FROM Personeller WHERE Id = @p1", baglanti);
-                    komut.Parameters.AddWithValue("@p1", silinecekId);
-                    komut.ExecuteNonQuery();
+                    if (isChecked == true)
+                    {
+                        int silinecekId = Convert.ToInt32(dgvPersoneller.Rows[i].Tag);
 
-                    silinenVarMi = true;
+                        SqlCommand komut = new SqlCommand("DELETE FROM Personeller WHERE Id = @p1", baglanti);
+                        komut.Parameters.AddWithValue("@p1", silinecekId);
+                        komut.ExecuteNonQuery();
+
+                        silinenVarMi = true;
+                    }
+                }
+                baglanti.Close();
+
+                if (silinenVarMi)
+                {
+                    MessageBox.Show("Seçili personeller silindi🗑️", "İşlem Başarılı");
+                    PersonelListele();
+                }
+                else
+                {
+                    MessageBox.Show("Silebilmek için önce yanlarındaki kutucuklardan en az birini seçmeniz lazım", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-
-            // 3. İşimizi bitirip mutfak kapısını kilitliyoruz
-            baglanti.Close();
-
-            // 4. Operasyon sonucunu ekrana yansıt
-            if (silinenVarMi == true)
+            catch (Exception ex)
             {
-                MessageBox.Show("Seçili personeller silindi🗑️", "İşlem Başarılı");
-
-                // ÖNEMLİ: Silinen adamların ekrandan da gitmesi için listeyi tazelemek zorundayız!
-                PersonelListele();
-            }
-            else
-            {
-                MessageBox.Show("Silebilmek için önce yanlarındaki kutucuklardan en az birini seçmeniz lazım", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Silme hatası: " + ex.Message);
             }
         }
     }

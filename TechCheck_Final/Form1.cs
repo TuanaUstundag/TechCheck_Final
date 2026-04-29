@@ -17,17 +17,13 @@ namespace TechCheck_Final
 {
     public partial class Form1 : Form
     {
+        // SENİN BİLGİSAYARINA UYGUN GÜNCEL BAĞLANTI ADRESİ
+        string baglantiYolu = @"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=mnjrosan;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+
         public Form1()
         {
             InitializeComponent();
         }
-
-
-        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True
-");
-
-        
-        
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -37,6 +33,7 @@ namespace TechCheck_Final
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            SqlConnection baglanti = new SqlConnection(baglantiYolu);
             try
             {
                 baglanti.Open();
@@ -74,13 +71,12 @@ namespace TechCheck_Final
                 return;
             }
 
+            SqlConnection baglanti = new SqlConnection(baglantiYolu);
             try
             {
-               
                 Random rnd = new Random();
                 string kod = rnd.Next(100000, 999999).ToString();
 
-               
                 baglanti.Open();
                 SqlCommand komutKod = new SqlCommand("UPDATE Kullanicilar SET KurtarmaKodu=@k1 WHERE KullaniciAdi=@p1", baglanti);
                 komutKod.Parameters.AddWithValue("@k1", kod);
@@ -98,21 +94,16 @@ namespace TechCheck_Final
                     return;
                 }
 
-
                 SmtpClient sc = new SmtpClient();
                 sc.Port = 587;
                 sc.Host = "smtp.gmail.com";
                 sc.EnableSsl = true;
-
                 sc.Credentials = new NetworkCredential("mustafakilkis739@gmail.com", "epzccctfecqtxbgc");
 
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("mustafakilkis739@gmail.com", "TechCheck Güvenlik");
                 mail.To.Add(aliciMail);
                 mail.Subject = "Şifre Sıfırlama Kodu";
-
-                // BURASI KRİTİK: $ işaretini kaldırdım, + ile birleştirdim. 
-                // Bu sayede "kod" değişkeni metnin içine zorla yapışacak.
                 mail.Body = "Sayın " + txtKullaniciAdi.Text + ",\n\n" +
                             "Şifrenizi sıfırlamak için güvenlik kodunuz: " + kod + "\n\n" +
                             "Lütfen bu kodu uygulamadaki ekrana giriniz.";
@@ -120,20 +111,17 @@ namespace TechCheck_Final
                 sc.Send(mail);
                 MessageBox.Show("Kurtarma kodu e-posta adresinize gönderildi!");
 
-
                 string girilenKod = Interaction.InputBox("Lütfen mailinize gelen 6 haneli kodu giriniz:", "Kod Doğrulama");
 
                 if (girilenKod == kod)
                 {
                     string yeniSifre = Interaction.InputBox("Kod Doğrulandı! Yeni şifrenizi giriniz:", "Şifre Güncelleme");
-
                     baglanti.Open();
                     SqlCommand komutGuncelle = new SqlCommand("UPDATE Kullanicilar SET Sifre=@s1 WHERE KullaniciAdi=@p1", baglanti);
                     komutGuncelle.Parameters.AddWithValue("@s1", yeniSifre);
                     komutGuncelle.Parameters.AddWithValue("@p1", txtKullaniciAdi.Text);
                     komutGuncelle.ExecuteNonQuery();
                     baglanti.Close();
-
                     MessageBox.Show("Şifreniz başarıyla güncellendi!");
                 }
                 else
@@ -150,7 +138,6 @@ namespace TechCheck_Final
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
         }
     }
 }

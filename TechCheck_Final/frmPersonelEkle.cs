@@ -17,44 +17,51 @@ namespace TechCheck_Final
         {
             InitializeComponent();
         }
-        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True
-");
-        private void btnKaydet_Click(object sender, EventArgs e)
-        {
-            baglanti.Open();
 
-            // DİKKAT: Sorguya "ResimYolu" eklendi!
-            SqlCommand komut = new SqlCommand("INSERT INTO Personeller (AdSoyad, Email, Gorev, Maas, Telefon, ResimYolu) VALUES (@p1, @p2, @p3, @p4, @p5, @p6)", baglanti);
-
-            komut.Parameters.AddWithValue("@p1", txtAdSoyad.Text);
-            komut.Parameters.AddWithValue("@p2", txtEmail.Text);
-            komut.Parameters.AddWithValue("@p3", txtGorev.Text);
-            komut.Parameters.AddWithValue("@p4", txtMaas.Text);
-            komut.Parameters.AddWithValue("@p5", txtTelefon.Text);
-
-            // Resmin adresini de 6. mermi olarak ekliyoruz
-            komut.Parameters.AddWithValue("@p6", secilenResimYolu);
-
-            komut.ExecuteNonQuery();
-            baglanti.Close();
-
-            MessageBox.Show("Personel başarıyla kaydedildi 🚀");
-            this.Close();
-        }
+        SqlConnection baglanti = new SqlConnection(@"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=mnjrosan;Integrated Security=True;Encrypt=False;TrustServerCertificate=True");
 
         string secilenResimYolu = "";
+
+        private void btnKaydet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (baglanti.State == ConnectionState.Closed) baglanti.Open();
+
+                string sorgu = "INSERT INTO Personeller (AdSoyad, Email, Gorev, Maas, Telefon, ResimYolu) VALUES (@p1, @p2, @p3, @p4, @p5, @p6)";
+                SqlCommand komut = new SqlCommand(sorgu, baglanti);
+
+                // EĞER BURADA HATA ALIYORSAN, TASARIMDAKİ TEXTBOX İSİMLERİNİ BUNLARLA AYNI YAP:
+                komut.Parameters.AddWithValue("@p1", txtAdSoyad.Text);
+                komut.Parameters.AddWithValue("@p2", txtMail.Text); // Tasarımda adı 'txtMail' olmalı
+                komut.Parameters.AddWithValue("@p3", txtGorev.Text);
+                komut.Parameters.AddWithValue("@p4", txtMaas.Text);
+                komut.Parameters.AddWithValue("@p5", txtTelefon.Text);
+                komut.Parameters.AddWithValue("@p6", secilenResimYolu);
+
+                komut.ExecuteNonQuery();
+                MessageBox.Show("Personel başarıyla kaydedildi!", "TechCheck", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Kaydetme hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                baglanti.Close();
+            }
+        }
+
         private void btnResimSec_Click(object sender, EventArgs e)
         {
-            // C#'ın dosya seçme penceresini çağırıyoruz
             OpenFileDialog dosyaSec = new OpenFileDialog();
             dosyaSec.Title = "Personel Profil Resmi Seç";
-            dosyaSec.Filter = "Resim Dosyaları |*.jpg;*.jpeg;*.png"; // Sadece resimlere izin ver
+            dosyaSec.Filter = "Resim Dosyaları |*.jpg;*.jpeg;*.png";
 
-            // Eğer adam bir dosya seçip 'Tamam'a (OK) basarsa:
             if (dosyaSec.ShowDialog() == DialogResult.OK)
             {
-                secilenResimYolu = dosyaSec.FileName; // Resmin adresini hafızaya al
-                pbResim.ImageLocation = secilenResimYolu; // Resmi PictureBox'ta göster (Önizleme)
+                secilenResimYolu = dosyaSec.FileName;
+                pbResim.ImageLocation = secilenResimYolu; // Tasarımda PictureBox adı 'pbResim' olmalı
             }
         }
     }
