@@ -87,13 +87,13 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvCihazListesi.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvCihazListesi.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(193)))), ((int)(((byte)(232)))));
-            this.dgvCihazListesi.Location = new System.Drawing.Point(0, 120);
-            this.dgvCihazListesi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvCihazListesi.Location = new System.Drawing.Point(0, 78);
+            this.dgvCihazListesi.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dgvCihazListesi.Name = "dgvCihazListesi";
             this.dgvCihazListesi.RowHeadersVisible = false;
             this.dgvCihazListesi.RowHeadersWidth = 51;
             this.dgvCihazListesi.RowTemplate.Height = 40;
-            this.dgvCihazListesi.Size = new System.Drawing.Size(1510, 854);
+            this.dgvCihazListesi.Size = new System.Drawing.Size(1007, 555);
             this.dgvCihazListesi.TabIndex = 1;
             this.dgvCihazListesi.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.DeepPurple;
             this.dgvCihazListesi.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
@@ -200,9 +200,9 @@
             this.guna2Panel1.Controls.Add(this.txtSearch);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(1735, 125);
+            this.guna2Panel1.Size = new System.Drawing.Size(1157, 81);
             this.guna2Panel1.TabIndex = 3;
             // 
             // txtSearch
@@ -219,12 +219,12 @@
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearch.IconLeft = global::TechCheck_Final.Properties.Resources.search;
-            this.txtSearch.Location = new System.Drawing.Point(141, 32);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtSearch.Location = new System.Drawing.Point(94, 21);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = "Cihaz veya Müşteri Ara...";
             this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(1194, 60);
+            this.txtSearch.Size = new System.Drawing.Size(796, 39);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -256,14 +256,14 @@
             // 
             // UC_CihazListesi
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.dgvCihazListesi);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "UC_CihazListesi";
-            this.Size = new System.Drawing.Size(1735, 1046);
+            this.Size = new System.Drawing.Size(1157, 680);
             this.Load += new System.EventHandler(this.UC_CihazListesi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCihazListesi)).EndInit();
             this.guna2Panel1.ResumeLayout(false);

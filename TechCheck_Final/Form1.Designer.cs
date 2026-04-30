@@ -83,7 +83,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 895);
             this.panel1.TabIndex = 2;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnLogin
             // 
@@ -144,7 +143,6 @@
             this.lblForgetPassword.TabIndex = 5;
             this.lblForgetPassword.TabStop = true;
             this.lblForgetPassword.Text = "Forget Password?";
-            this.lblForgetPassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblForgetPassword_LinkClicked);
             // 
             // chkRememberMe
             // 

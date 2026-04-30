@@ -1,68 +1,96 @@
 ﻿using Guna.UI2.WinForms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TechCheck_Final
 {
     public partial class UC_YeniKayit : UserControl
     {
+        string baglantiYolu = @"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=TechCheckDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+
         public UC_YeniKayit()
         {
             InitializeComponent();
         }
 
-        private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void UC_YeniKayit_Load(object sender, EventArgs e)
         {
-
+            PersonelleriGetir(); // Sayfa açılınca teknisyenler yüklensin
         }
 
-        private void btnTemizle_Click(object sender, EventArgs e)
+        private void PersonelleriGetir()
         {
-            txtMusteriAd.Clear(); 
-            txtCihazModel.Clear();
-            txtSeriNo.Clear();
-            txtAriza.Clear();
-            cmbDurum.SelectedIndex = -1;
-            dtpKayitTarihi.Value = DateTime.Now;
+            try
+            {
+                using (SqlConnection baglanti = new SqlConnection(baglantiYolu))
+                {
+                    string sorgu = "SELECT UserID, Username FROM Users";
+                    SqlDataAdapter da = new SqlDataAdapter(sorgu, baglanti);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-          
-            txtMusteriAd.Focus();
+                    cmbPersoneller.DataSource = dt;
+                    cmbPersoneller.DisplayMember = "Username";
+                    cmbPersoneller.ValueMember = "UserID";
+                    cmbPersoneller.SelectedIndex = -1;
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Hata: " + ex.Message); }
         }
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {
-            SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True
-");
-
-            try
+            if (string.IsNullOrEmpty(txtMusteriAd.Text) || cmbPersoneller.SelectedValue == null)
             {
-                baglanti.Open(); 
-                string sorgu = "INSERT INTO Cihazlar (MusteriAd, CihazModel, SeriNo, Ariza, Durum) VALUES (@p1, @p2, @p3, @p4, @p5)"; 
-
-                SqlCommand komut = new SqlCommand(sorgu, baglanti);
-                komut.Parameters.AddWithValue("@p1", txtMusteriAd.Text);
-                komut.Parameters.AddWithValue("@p2", txtCihazModel.Text);
-                komut.Parameters.AddWithValue("@p3", txtSeriNo.Text);
-                komut.Parameters.AddWithValue("@p4", txtAriza.Text);
-                komut.Parameters.AddWithValue("@p5", cmbDurum.Text);
-               
-
-                komut.ExecuteNonQuery(); 
-                baglanti.Close(); 
-                MessageBox.Show("Cihaz başarıyla kaydedildi!", "TechCheck", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Lütfen müşteri adını ve teknisyeni seçiniz!");
+                return;
             }
-            catch (Exception ex) 
+
+            using (SqlConnection baglanti = new SqlConnection(baglantiYolu))
             {
-                MessageBox.Show("Hata oluştu: " + ex.Message);
+                try
+                {
+                    baglanti.Open();
+                    // 1. Müşteriyi ekle
+                    string mSorgu = "INSERT INTO Customers (FullName) OUTPUT INSERTED.CustomerID VALUES (@name)";
+                    SqlCommand mKomut = new SqlCommand(mSorgu, baglanti);
+                    mKomut.Parameters.AddWithValue("@name", txtMusteriAd.Text);
+                    int mId = (int)mKomut.ExecuteScalar();
+
+                    // 2. Cihazı ekle
+                    string cSorgu = "INSERT INTO Devices (CustomerID, Model, SerialNumber) OUTPUT INSERTED.DeviceID VALUES (@mId, @model, @seri)";
+                    SqlCommand cKomut = new SqlCommand(cSorgu, baglanti);
+                    cKomut.Parameters.AddWithValue("@mId", mId);
+                    cKomut.Parameters.AddWithValue("@model", txtCihazModel.Text);
+                    cKomut.Parameters.AddWithValue("@seri", txtSeriNo.Text);
+                    int dId = (int)cKomut.ExecuteScalar();
+
+                    // 3. Servis kaydını oluştur
+                    string sSorgu = "INSERT INTO ServiceRecords (DeviceID, TechnicianID, FailureDescription, Status) VALUES (@dId, @tId, @ariza, @durum)";
+                    SqlCommand sKomut = new SqlCommand(sSorgu, baglanti);
+                    sKomut.Parameters.AddWithValue("@dId", dId);
+                    sKomut.Parameters.AddWithValue("@tId", cmbPersoneller.SelectedValue);
+                    sKomut.Parameters.AddWithValue("@ariza", txtAriza.Text);
+                    sKomut.Parameters.AddWithValue("@durum", cmbDurum.Text);
+
+                    sKomut.ExecuteNonQuery();
+                    MessageBox.Show("Kayıt Başarılı!");
+                    btnTemizle.PerformClick();
+                }
+                catch (Exception ex) { MessageBox.Show("Kayıt Hatası: " + ex.Message); }
             }
+        }
+
+        private void btnTemizle_Click(object sender, EventArgs e)
+        {
+            txtMusteriAd.Clear();
+            txtCihazModel.Clear();
+            txtSeriNo.Clear();
+            txtAriza.Clear();
+            cmbDurum.SelectedIndex = -1;
+            cmbPersoneller.SelectedIndex = -1;
         }
     }
 }
