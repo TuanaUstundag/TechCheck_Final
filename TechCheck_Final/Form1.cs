@@ -1,24 +1,16 @@
 ﻿using Guna.UI2.WinForms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Net;
-using System.Net.Mail;
-using Microsoft.VisualBasic;
 
 namespace TechCheck_Final
 {
     public partial class Form1 : Form
     {
-        // Bağlantı adresin (TrustServerCertificate eklendi, hata vermez)
-        string baglantiYolu = @"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=mnjrosan;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+        // Bağlantı yolunu TechCheckDB ve Users tablosuna göre eşitledik
+        string baglantiYolu = @"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=TechCheckDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
 
         public Form1()
         {
@@ -33,69 +25,51 @@ namespace TechCheck_Final
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            SqlConnection baglanti = new SqlConnection(baglantiYolu);
-            try
+            using (SqlConnection baglanti = new SqlConnection(baglantiYolu))
             {
-                baglanti.Open();
-
-                // --- 1. ADIM: ADMIN KONTROLÜ (Kullanicilar Tablosu) ---
-                string sorguAdmin = "SELECT * FROM Kullanicilar WHERE KullaniciAdi=@p1 AND Sifre=@p2";
-                SqlCommand komutAdmin = new SqlCommand(sorguAdmin, baglanti);
-                komutAdmin.Parameters.AddWithValue("@p1", txtKullaniciAdi.Text);
-                komutAdmin.Parameters.AddWithValue("@p2", txtSifre.Text);
-
-                SqlDataReader drAdmin = komutAdmin.ExecuteReader();
-
-                if (drAdmin.Read())
+                try
                 {
-                    MessageBox.Show("Yönetici Girişi Başarılı!", "TechCheck", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    drAdmin.Close();
-                    Dashboard dsh = new Dashboard();
-                    dsh.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    // Admin değilse okuyucuyu kapatıp Personellere bakıyoruz
-                    drAdmin.Close();
+                    baglanti.Open();
+                    // Yeni Users tablosuna göre sorgu
+                    string sorgu = "SELECT * FROM Users WHERE Username=@p1 AND Password=@p2";
+                    SqlCommand komut = new SqlCommand(sorgu, baglanti);
+                    komut.Parameters.AddWithValue("@p1", txtKullaniciAdi.Text);
+                    komut.Parameters.AddWithValue("@p2", txtSifre.Text);
 
-                    // --- 2. ADIM: PERSONEL KONTROLÜ (Senin Fotoğraftaki Tablo Yapına Göre) ---
-                    // ÖNEMLİ: SQL'de 'Sifre' sütununu eklemiş olman gerekiyor.
-                    string sorguPersonel = "SELECT * FROM Personeller WHERE Email=@p1 AND Sifre=@p2";
-                    SqlCommand komutPersonel = new SqlCommand(sorguPersonel, baglanti);
-                    komutPersonel.Parameters.AddWithValue("@p1", txtKullaniciAdi.Text); // Personel emailini buraya girecek
-                    komutPersonel.Parameters.AddWithValue("@p2", txtSifre.Text);
+                    SqlDataReader dr = komut.ExecuteReader();
 
-                    SqlDataReader drPersonel = komutPersonel.ExecuteReader();
-
-                    if (drPersonel.Read())
+                    if (dr.Read())
                     {
-                        // Senin tablandaki sütun adı 'AdSoyad' olduğu için onu çekiyoruz
-                        string adSoyad = drPersonel["AdSoyad"].ToString();
-                        MessageBox.Show("Hoş geldin Personel: " + adSoyad, "TechCheck", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        string rol = dr["UserRole"].ToString();
+                        MessageBox.Show("Giriş Başarılı! Rolünüz: " + rol, "TechCheck", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        drPersonel.Close();
-                        Dashboard dsh = new Dashboard(); // Şimdilik ana panele yönlendirir
+                        Dashboard dsh = new Dashboard();
                         dsh.Show();
                         this.Hide();
                     }
                     else
                     {
-                        drPersonel.Close();
-                        MessageBox.Show("Kullanıcı adı/Email veya şifre hatalı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Kullanıcı adı veya şifre hatalı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Bağlantı hatası: " + ex.Message);
-            }
-            finally
-            {
-                if (baglanti.State == ConnectionState.Open) baglanti.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Bağlantı hatası: " + ex.Message);
+                }
             }
         }
 
-        // ... Diğer metodlar (Şifre unuttum vs.) burada aynen kalabilir ...
+        // "Kayıt Ol" yazısına tıklandığında çalışan yer
+        private void lblForgetPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmKayitOl kayitFormu = new frmKayitOl();
+            kayitFormu.Owner = this; // Form1'i bu formun sahibi yapıyoruz
+            kayitFormu.Show();       // Kayıt formunu aç
+            this.Hide();             // Login formunu gizle (Kapanmaz, sadece saklanır)
+        }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
