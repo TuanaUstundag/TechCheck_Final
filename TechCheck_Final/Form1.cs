@@ -9,8 +9,8 @@ namespace TechCheck_Final
 {
     public partial class Form1 : Form
     {
-        // Bağlantı yolunu TechCheckDB ve Users tablosuna göre eşitledik
-        string baglantiYolu = @"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=TechCheckDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+        // Bağlantı adresin (TrustServerCertificate eklendi, hata vermez)
+        string baglantiYolu = (@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True");
 
         public Form1()
         {

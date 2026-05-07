@@ -14,8 +14,8 @@ namespace TechCheck_Final
 {
     public partial class UC_CihazListesi : UserControl
     {
-        // 1. BAĞLANTI: TechCheckDB veritabanı ve senin SQL Server ismin
-        string baglantiYolu = @"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=TechCheckDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+        // Veritabanı bağlantı yolu
+        string baglantiYolu = (@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True");
 
         public UC_CihazListesi()
         {
@@ -27,29 +27,26 @@ namespace TechCheck_Final
             VerileriGetir();
         }
 
-        // VERİLERİ LİSTELEME (Devices, Customers ve ServiceRecords tablolarını birleştirir)
+        // VERİLERİ LİSTELEME - Cihazlar tablosundan direkt çekiyoruz
         public void VerileriGetir()
         {
             try
             {
                 using (SqlConnection baglanti = new SqlConnection(baglantiYolu))
                 {
-                    // "as" kullanarak SQL isimlerini senin C# butonlarının beklediği isimlere çevirdik
-                    string sorgu = @"SELECT D.DeviceID as 'Id', 
-                                            C.FullName as 'MusteriAd', 
-                                            D.Model as 'CihazModel', 
-                                            D.SerialNumber as 'SeriNo',
-                                            S.FailureDescription as 'Ariza', 
-                                            S.Status as 'Durum' 
-                                     FROM Devices D 
-                                     LEFT JOIN Customers C ON D.CustomerID = C.CustomerID
-                                     LEFT JOIN ServiceRecords S ON D.DeviceID = S.DeviceID";
+                    string sorgu = @"SELECT Id, 
+                                            MusteriAd, 
+                                            CihazModel, 
+                                            SeriNo, 
+                                            Ariza, 
+                                            Durum,
+                                            KayitTarihi
+                                     FROM Cihazlar";
 
                     SqlDataAdapter da = new SqlDataAdapter(sorgu, baglanti);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    // GridView'i sıfırlayıp yeniden dolduruyoruz (Hataları önlemek için)
                     dgvCihazListesi.DataSource = null;
                     dgvCihazListesi.Columns.Clear();
                     dgvCihazListesi.AutoGenerateColumns = true;
@@ -62,18 +59,22 @@ namespace TechCheck_Final
             }
         }
 
-        // ARAMA YAPMA (Müşteri adına veya modele göre filtreler)
+        // ARAMA YAPMA - Müşteri adına veya modele göre filtreler
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 using (SqlConnection baglanti = new SqlConnection(baglantiYolu))
                 {
-                    string sorgu = @"SELECT D.DeviceID as 'Id', C.FullName as 'MusteriAd', D.Model as 'CihazModel', D.SerialNumber as 'SeriNo', S.FailureDescription as 'Ariza', S.Status as 'Durum' 
-                                     FROM Devices D 
-                                     LEFT JOIN Customers C ON D.CustomerID = C.CustomerID
-                                     LEFT JOIN ServiceRecords S ON D.DeviceID = S.DeviceID
-                                     WHERE C.FullName LIKE @p1 OR D.Model LIKE @p1";
+                    string sorgu = @"SELECT Id, 
+                                            MusteriAd, 
+                                            CihazModel, 
+                                            SeriNo, 
+                                            Ariza, 
+                                            Durum,
+                                            KayitTarihi
+                                     FROM Cihazlar
+                                     WHERE MusteriAd LIKE @p1 OR CihazModel LIKE @p1";
 
                     SqlDataAdapter da = new SqlDataAdapter(sorgu, baglanti);
                     da.SelectCommand.Parameters.AddWithValue("@p1", "%" + txtSearch.Text + "%");
@@ -97,7 +98,7 @@ namespace TechCheck_Final
                 string columnName = dgvCihazListesi.Columns[e.ColumnIndex].Name;
 
                 // SİLME İŞLEMİ
-                if (columnName == "colDelete" || columnName == "Delete") // Guna otomatik isim verebilir, ikisini de kontrol ediyoruz
+                if (columnName == "colDelete" || columnName == "Delete")
                 {
                     int id = Convert.ToInt32(dgvCihazListesi.Rows[e.RowIndex].Cells["Id"].Value);
                     if (MessageBox.Show("Bu cihaz kaydını silmek istediğinize emin misiniz?", "TechCheck", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -124,6 +125,7 @@ namespace TechCheck_Final
             }
         }
 
+        // SİLME METODU
         private void KaydiSil(int id)
         {
             using (SqlConnection baglanti = new SqlConnection(baglantiYolu))
@@ -131,19 +133,20 @@ namespace TechCheck_Final
                 try
                 {
                     baglanti.Open();
-                    // TechCheckDB yapısında ana cihaz tablosu 'Devices'dır
-                    SqlCommand komut = new SqlCommand("DELETE FROM Devices WHERE DeviceID=@p1", baglanti);
+                    SqlCommand komut = new SqlCommand("DELETE FROM Cihazlar WHERE Id=@p1", baglanti);
                     komut.Parameters.AddWithValue("@p1", id);
                     komut.ExecuteNonQuery();
                     MessageBox.Show("Cihaz kaydı başarıyla silindi!");
                 }
-                catch (Exception ex) { MessageBox.Show("Silme hatası: " + ex.Message); }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Silme hatası: " + ex.Message);
+                }
             }
         }
 
         private void dgvCihazListesi_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // İkon yollarını kendi projerine göre kontrol etmelisin
             if (dgvCihazListesi.Columns[e.ColumnIndex].Name == "colEdit") e.Value = Properties.Resources.pencil;
             if (dgvCihazListesi.Columns[e.ColumnIndex].Name == "colDelete") e.Value = Properties.Resources.trash;
         }
