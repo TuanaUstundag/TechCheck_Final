@@ -33,13 +33,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnGuncelle = new Guna.UI2.WinForms.Guna2Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbDurum = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.txtCihazModel = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtSeriNo = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtAriza = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btnGuncelle = new Guna.UI2.WinForms.Guna2Button();
+            this.txtCihazModel = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtMusteriAd = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2ShadowPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -107,24 +107,6 @@
             this.label3.TabIndex = 12;
             this.label3.Text = "Arıza Durumu";
             // 
-            // btnGuncelle
-            // 
-            this.btnGuncelle.BorderThickness = 1;
-            this.btnGuncelle.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnGuncelle.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnGuncelle.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnGuncelle.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnGuncelle.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
-            this.btnGuncelle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnGuncelle.ForeColor = System.Drawing.Color.White;
-            this.btnGuncelle.Image = global::TechCheck_Final.Properties.Resources.bookmark;
-            this.btnGuncelle.Location = new System.Drawing.Point(771, 449);
-            this.btnGuncelle.Name = "btnGuncelle";
-            this.btnGuncelle.Size = new System.Drawing.Size(316, 82);
-            this.btnGuncelle.TabIndex = 10;
-            this.btnGuncelle.Text = "Güncelle";
-            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -166,27 +148,6 @@
             this.cmbDurum.Size = new System.Drawing.Size(388, 36);
             this.cmbDurum.TabIndex = 7;
             // 
-            // txtCihazModel
-            // 
-            this.txtCihazModel.BorderRadius = 10;
-            this.txtCihazModel.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCihazModel.DefaultText = "";
-            this.txtCihazModel.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtCihazModel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtCihazModel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCihazModel.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCihazModel.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCihazModel.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtCihazModel.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCihazModel.IconLeft = global::TechCheck_Final.Properties.Resources.mobile_notch;
-            this.txtCihazModel.Location = new System.Drawing.Point(196, 212);
-            this.txtCihazModel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtCihazModel.Name = "txtCihazModel";
-            this.txtCihazModel.PlaceholderText = "Örn: iPhone 13 Pro";
-            this.txtCihazModel.SelectedText = "";
-            this.txtCihazModel.Size = new System.Drawing.Size(436, 60);
-            this.txtCihazModel.TabIndex = 5;
-            // 
             // txtSeriNo
             // 
             this.txtSeriNo.BorderRadius = 10;
@@ -227,6 +188,46 @@
             this.txtAriza.SelectedText = "";
             this.txtAriza.Size = new System.Drawing.Size(390, 229);
             this.txtAriza.TabIndex = 3;
+            // 
+            // btnGuncelle
+            // 
+            this.btnGuncelle.BorderRadius = 10;
+            this.btnGuncelle.BorderThickness = 1;
+            this.btnGuncelle.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnGuncelle.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnGuncelle.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnGuncelle.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnGuncelle.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
+            this.btnGuncelle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnGuncelle.ForeColor = System.Drawing.Color.White;
+            this.btnGuncelle.Image = global::TechCheck_Final.Properties.Resources.bookmark;
+            this.btnGuncelle.Location = new System.Drawing.Point(771, 449);
+            this.btnGuncelle.Name = "btnGuncelle";
+            this.btnGuncelle.Size = new System.Drawing.Size(316, 82);
+            this.btnGuncelle.TabIndex = 10;
+            this.btnGuncelle.Text = "Güncelle";
+            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
+            // 
+            // txtCihazModel
+            // 
+            this.txtCihazModel.BorderRadius = 10;
+            this.txtCihazModel.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCihazModel.DefaultText = "";
+            this.txtCihazModel.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtCihazModel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtCihazModel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCihazModel.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCihazModel.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCihazModel.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtCihazModel.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCihazModel.IconLeft = global::TechCheck_Final.Properties.Resources.mobile_notch;
+            this.txtCihazModel.Location = new System.Drawing.Point(196, 212);
+            this.txtCihazModel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtCihazModel.Name = "txtCihazModel";
+            this.txtCihazModel.PlaceholderText = "Örn: iPhone 13 Pro";
+            this.txtCihazModel.SelectedText = "";
+            this.txtCihazModel.Size = new System.Drawing.Size(436, 60);
+            this.txtCihazModel.TabIndex = 5;
             // 
             // txtMusteriAd
             // 

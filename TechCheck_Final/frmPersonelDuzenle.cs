@@ -1,5 +1,4 @@
-﻿// frmPersonelDuzenle.cs
-using System;
+﻿using System;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
@@ -10,6 +9,9 @@ namespace TechCheck_Final
     {
         public int PersonelId { get; set; }
         private string secilenResimYolu = "";
+
+        // Bağlantı yolunu her seferinde uzun uzun yazmamak için buraya aldım
+        string baglantiYolu = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True";
 
         public frmPersonelDuzenle()
         {
@@ -23,20 +25,23 @@ namespace TechCheck_Final
 
         private void MevcutBilgileriYukle()
         {
-            SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True");
+            SqlConnection baglanti = new SqlConnection(baglantiYolu);
 
             try
             {
                 baglanti.Open();
-                SqlCommand komut = new SqlCommand("SELECT * FROM Personeller WHERE Id = @id", baglanti);
+
+                // TABLO GÜNCELLENDİ: Kullanicilar
+                SqlCommand komut = new SqlCommand("SELECT * FROM Kullanicilar WHERE Id = @id", baglanti);
                 komut.Parameters.AddWithValue("@id", PersonelId);
                 SqlDataReader oku = komut.ExecuteReader();
 
                 if (oku.Read())
                 {
-                    txtAdSoyad.Text = oku["AdSoyad"].ToString();
+                    // SÜTUN ADLARI GÜNCELLENDİ (Veritabanındaki gerçek isimlerine göre)
+                    txtAdSoyad.Text = oku["KullaniciAdi"].ToString();
                     txtEmail.Text = oku["Email"].ToString();
-                    txtGorev.Text = oku["Gorev"].ToString();
+                    txtGorev.Text = oku["KullaniciRolu"].ToString();
                     txtMaas.Text = oku["Maas"].ToString();
                     txtTelefon.Text = oku["Telefon"].ToString();
 
@@ -45,7 +50,7 @@ namespace TechCheck_Final
                     if (!string.IsNullOrEmpty(secilenResimYolu) && System.IO.File.Exists(secilenResimYolu))
                         pbResim.Image = Image.FromFile(secilenResimYolu);
                     else
-                        pbResim.Image = Properties.Resources.avatar_1;
+                        pbResim.Image = Properties.Resources.avatar_1; // Resim yoksa varsayılanı koy
                 }
 
                 baglanti.Close();
@@ -53,12 +58,10 @@ namespace TechCheck_Final
             catch (Exception ex)
             {
                 if (baglanti.State == System.Data.ConnectionState.Open) baglanti.Close();
-                MessageBox.Show("Bilgiler yüklenemedi: " + ex.Message);
+                MessageBox.Show("Bilgiler yüklenemedi: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        
-        
         private void btnIptal_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -73,30 +76,38 @@ namespace TechCheck_Final
         {
             if (string.IsNullOrWhiteSpace(txtAdSoyad.Text))
             {
-                MessageBox.Show("Ad Soyad boş bırakılamaz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Personel adı boş bırakılamaz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True");
+            // İŞTE ÇÖZÜM BURADA: Maaşı güvenli bir şekilde sayıya (decimal) çeviriyoruz.
+            // Replace(".", ",") kısmı, eğer kullanıcı 50000.00 yazarsa sistemin bunu hata vermeden 50000,00 şeklinde sayıya çevirmesini sağlar (Türkçe formatına uyum için).
+            decimal maasDegeri = 0;
+            decimal.TryParse(txtMaas.Text.Trim().Replace(".", ","), out maasDegeri);
+
+            SqlConnection baglanti = new SqlConnection(baglantiYolu);
 
             try
             {
                 baglanti.Open();
 
                 SqlCommand komut = new SqlCommand(
-                    @"UPDATE Personeller SET 
-                        AdSoyad   = @ad, 
-                        Email     = @email, 
-                        Gorev     = @gorev, 
-                        Maas      = @maas, 
-                        Telefon   = @telefon, 
-                        ResimYolu = @resim 
-                      WHERE Id = @id", baglanti);
+                    @"UPDATE Kullanicilar SET 
+                KullaniciAdi   = @ad, 
+                Email          = @email, 
+                KullaniciRolu  = @gorev, 
+                Maas           = @maas, 
+                Telefon        = @telefon, 
+                ResimYolu      = @resim 
+              WHERE Id = @id", baglanti);
 
                 komut.Parameters.AddWithValue("@ad", txtAdSoyad.Text.Trim());
                 komut.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
                 komut.Parameters.AddWithValue("@gorev", txtGorev.Text.Trim());
-                komut.Parameters.AddWithValue("@maas", txtMaas.Text.Trim());
+
+                // DEĞİŞİKLİK BURADA: Artık txtMaas.Text (metin) değil, maasDegeri (sayı) değişkenini gönderiyoruz!
+                komut.Parameters.AddWithValue("@maas", maasDegeri);
+
                 komut.Parameters.AddWithValue("@telefon", txtTelefon.Text.Trim());
                 komut.Parameters.AddWithValue("@resim", secilenResimYolu);
                 komut.Parameters.AddWithValue("@id", PersonelId);
@@ -104,13 +115,13 @@ namespace TechCheck_Final
                 komut.ExecuteNonQuery();
                 baglanti.Close();
 
-                MessageBox.Show("Personel bilgileri güncellendi ✅", "Başarılı");
+                MessageBox.Show("Personel bilgileri başarıyla güncellendi ✅", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             catch (Exception ex)
             {
                 if (baglanti.State == System.Data.ConnectionState.Open) baglanti.Close();
-                MessageBox.Show("Güncelleme hatası: " + ex.Message);
+                MessageBox.Show("Güncelleme hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

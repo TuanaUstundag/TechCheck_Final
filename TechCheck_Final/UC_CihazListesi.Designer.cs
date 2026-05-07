@@ -36,6 +36,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.btnDuzenle = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSil = new Guna.UI2.WinForms.Guna2Button();
             this.dgvCihazListesi = new Guna.UI2.WinForms.Guna2DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ariza = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +55,42 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCihazListesi)).BeginInit();
             this.guna2Panel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // btnDuzenle
+            // 
+            this.btnDuzenle.BorderRadius = 10;
+            this.btnDuzenle.BorderThickness = 1;
+            this.btnDuzenle.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnDuzenle.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnDuzenle.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnDuzenle.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnDuzenle.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
+            this.btnDuzenle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnDuzenle.ForeColor = System.Drawing.Color.White;
+            this.btnDuzenle.Location = new System.Drawing.Point(1390, 32);
+            this.btnDuzenle.Name = "btnDuzenle";
+            this.btnDuzenle.Size = new System.Drawing.Size(268, 72);
+            this.btnDuzenle.TabIndex = 11;
+            this.btnDuzenle.Text = "Düzenle";
+            this.btnDuzenle.Click += new System.EventHandler(this.btnDuzenle_Click);
+            // 
+            // btnSil
+            // 
+            this.btnSil.BorderRadius = 10;
+            this.btnSil.BorderThickness = 1;
+            this.btnSil.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSil.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSil.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSil.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSil.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
+            this.btnSil.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnSil.ForeColor = System.Drawing.Color.White;
+            this.btnSil.Location = new System.Drawing.Point(1708, 32);
+            this.btnSil.Name = "btnSil";
+            this.btnSil.Size = new System.Drawing.Size(268, 72);
+            this.btnSil.TabIndex = 12;
+            this.btnSil.Text = "Sil";
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click_1);
             // 
             // dgvCihazListesi
             // 
@@ -87,13 +125,13 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvCihazListesi.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvCihazListesi.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(193)))), ((int)(((byte)(232)))));
-            this.dgvCihazListesi.Location = new System.Drawing.Point(0, 78);
-            this.dgvCihazListesi.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.dgvCihazListesi.Location = new System.Drawing.Point(0, 120);
+            this.dgvCihazListesi.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.dgvCihazListesi.Name = "dgvCihazListesi";
             this.dgvCihazListesi.RowHeadersVisible = false;
             this.dgvCihazListesi.RowHeadersWidth = 51;
             this.dgvCihazListesi.RowTemplate.Height = 40;
-            this.dgvCihazListesi.Size = new System.Drawing.Size(1007, 555);
+            this.dgvCihazListesi.Size = new System.Drawing.Size(2014, 926);
             this.dgvCihazListesi.TabIndex = 1;
             this.dgvCihazListesi.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.DeepPurple;
             this.dgvCihazListesi.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
@@ -118,7 +156,6 @@
             this.dgvCihazListesi.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
             this.dgvCihazListesi.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvCihazListesi.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCihazListesi_CellContentClick);
-            this.dgvCihazListesi.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvCihazListesi_CellFormatting);
             // 
             // ID
             // 
@@ -197,12 +234,14 @@
             // guna2Panel1
             // 
             this.guna2Panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel1.Controls.Add(this.btnSil);
+            this.guna2Panel1.Controls.Add(this.btnDuzenle);
             this.guna2Panel1.Controls.Add(this.txtSearch);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(1157, 81);
+            this.guna2Panel1.Size = new System.Drawing.Size(2014, 125);
             this.guna2Panel1.TabIndex = 3;
             // 
             // txtSearch
@@ -219,12 +258,12 @@
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearch.IconLeft = global::TechCheck_Final.Properties.Resources.search;
-            this.txtSearch.Location = new System.Drawing.Point(94, 21);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtSearch.Location = new System.Drawing.Point(141, 32);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = "Cihaz veya Müşteri Ara...";
             this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(796, 39);
+            this.txtSearch.Size = new System.Drawing.Size(1194, 60);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -256,14 +295,14 @@
             // 
             // UC_CihazListesi
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.dgvCihazListesi);
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "UC_CihazListesi";
-            this.Size = new System.Drawing.Size(1157, 680);
+            this.Size = new System.Drawing.Size(2014, 1046);
             this.Load += new System.EventHandler(this.UC_CihazListesi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCihazListesi)).EndInit();
             this.guna2Panel1.ResumeLayout(false);
@@ -287,5 +326,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Tarih;
         private System.Windows.Forms.DataGridViewImageColumn colEdit;
         private System.Windows.Forms.DataGridViewImageColumn colDelete;
+        private Guna.UI2.WinForms.Guna2Button btnDuzenle;
+        private Guna.UI2.WinForms.Guna2Button btnSil;
     }
 }

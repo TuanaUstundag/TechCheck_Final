@@ -35,8 +35,6 @@
             this.txtArama = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnPersonelEkle = new Guna.UI2.WinForms.Guna2Button();
             this.dgvPersoneller = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.btnPersonelSil = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.colSec = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colResim = new System.Windows.Forms.DataGridViewImageColumn();
             this.AdSoyad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,6 +42,8 @@
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Maas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnPersonelSil = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnPersonelDuzenle = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersoneller)).BeginInit();
             this.guna2Panel1.SuspendLayout();
@@ -81,7 +81,7 @@
             this.btnPersonelEkle.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
             this.btnPersonelEkle.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnPersonelEkle.ForeColor = System.Drawing.Color.White;
-            this.btnPersonelEkle.Location = new System.Drawing.Point(1191, 23);
+            this.btnPersonelEkle.Location = new System.Drawing.Point(1217, 23);
             this.btnPersonelEkle.Name = "btnPersonelEkle";
             this.btnPersonelEkle.Size = new System.Drawing.Size(160, 62);
             this.btnPersonelEkle.TabIndex = 1;
@@ -122,12 +122,12 @@
             this.dgvPersoneller.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPersoneller.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPersoneller.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.dgvPersoneller.Location = new System.Drawing.Point(0, 100);
+            this.dgvPersoneller.Location = new System.Drawing.Point(0, 135);
             this.dgvPersoneller.Name = "dgvPersoneller";
             this.dgvPersoneller.RowHeadersVisible = false;
             this.dgvPersoneller.RowHeadersWidth = 62;
             this.dgvPersoneller.RowTemplate.Height = 70;
-            this.dgvPersoneller.Size = new System.Drawing.Size(1841, 1029);
+            this.dgvPersoneller.Size = new System.Drawing.Size(1867, 994);
             this.dgvPersoneller.TabIndex = 2;
             this.dgvPersoneller.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvPersoneller.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -150,37 +150,6 @@
             this.dgvPersoneller.ThemeStyle.RowsStyle.Height = 70;
             this.dgvPersoneller.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvPersoneller.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-         
-            // 
-            // btnPersonelSil
-            // 
-            this.btnPersonelSil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPersonelSil.BorderRadius = 20;
-            this.btnPersonelSil.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnPersonelSil.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnPersonelSil.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnPersonelSil.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPersonelSil.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
-            this.btnPersonelSil.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnPersonelSil.ForeColor = System.Drawing.Color.White;
-            this.btnPersonelSil.Location = new System.Drawing.Point(1390, 23);
-            this.btnPersonelSil.Name = "btnPersonelSil";
-            this.btnPersonelSil.Size = new System.Drawing.Size(160, 62);
-            this.btnPersonelSil.TabIndex = 4;
-            this.btnPersonelSil.Text = "-  Personel Sil";
-            this.btnPersonelSil.Click += new System.EventHandler(this.btnPersonelSil_Click);
-            // 
-            // guna2Panel1
-            // 
-            this.guna2Panel1.Controls.Add(this.btnPersonelDuzenle);
-            this.guna2Panel1.Controls.Add(this.txtArama);
-            this.guna2Panel1.Controls.Add(this.btnPersonelSil);
-            this.guna2Panel1.Controls.Add(this.btnPersonelEkle);
-            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(1841, 100);
-            this.guna2Panel1.TabIndex = 5;
             // 
             // colSec
             // 
@@ -246,6 +215,36 @@
             this.Telefon.MinimumWidth = 8;
             this.Telefon.Name = "Telefon";
             // 
+            // btnPersonelSil
+            // 
+            this.btnPersonelSil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPersonelSil.BorderRadius = 20;
+            this.btnPersonelSil.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnPersonelSil.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnPersonelSil.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnPersonelSil.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnPersonelSil.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
+            this.btnPersonelSil.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnPersonelSil.ForeColor = System.Drawing.Color.White;
+            this.btnPersonelSil.Location = new System.Drawing.Point(1416, 23);
+            this.btnPersonelSil.Name = "btnPersonelSil";
+            this.btnPersonelSil.Size = new System.Drawing.Size(160, 62);
+            this.btnPersonelSil.TabIndex = 4;
+            this.btnPersonelSil.Text = "-  Personel Sil";
+            this.btnPersonelSil.Click += new System.EventHandler(this.btnPersonelSil_Click);
+            // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.Controls.Add(this.btnPersonelDuzenle);
+            this.guna2Panel1.Controls.Add(this.txtArama);
+            this.guna2Panel1.Controls.Add(this.btnPersonelSil);
+            this.guna2Panel1.Controls.Add(this.btnPersonelEkle);
+            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.Size = new System.Drawing.Size(1867, 135);
+            this.guna2Panel1.TabIndex = 5;
+            // 
             // btnPersonelDuzenle
             // 
             this.btnPersonelDuzenle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -257,7 +256,7 @@
             this.btnPersonelDuzenle.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(86)))), ((int)(((byte)(218)))));
             this.btnPersonelDuzenle.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnPersonelDuzenle.ForeColor = System.Drawing.Color.White;
-            this.btnPersonelDuzenle.Location = new System.Drawing.Point(1588, 23);
+            this.btnPersonelDuzenle.Location = new System.Drawing.Point(1614, 23);
             this.btnPersonelDuzenle.Name = "btnPersonelDuzenle";
             this.btnPersonelDuzenle.Size = new System.Drawing.Size(178, 62);
             this.btnPersonelDuzenle.TabIndex = 5;
@@ -273,7 +272,7 @@
             this.Controls.Add(this.guna2Panel1);
             this.MinimumSize = new System.Drawing.Size(1050, 650);
             this.Name = "UC_Personeller";
-            this.Size = new System.Drawing.Size(1841, 1129);
+            this.Size = new System.Drawing.Size(1867, 1129);
             this.Load += new System.EventHandler(this.UC_Personeller_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersoneller)).EndInit();
             this.guna2Panel1.ResumeLayout(false);

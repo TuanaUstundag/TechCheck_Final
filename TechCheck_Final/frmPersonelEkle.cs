@@ -47,15 +47,7 @@ namespace TechCheck_Final
 
         private void btnResimSec_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dosyaSec = new OpenFileDialog();
-            dosyaSec.Title = "Personel Profil Resmi Seç";
-            dosyaSec.Filter = "Resim Dosyaları |*.jpg;*.jpeg;*.png";
-
-            if (dosyaSec.ShowDialog() == DialogResult.OK)
-            {
-                secilenResimYolu = dosyaSec.FileName;
-                pbResim.Image = Image.FromFile(secilenResimYolu); 
-            }
+            
         }
 
         private void frmPersonelEkle_Load(object sender, EventArgs e)

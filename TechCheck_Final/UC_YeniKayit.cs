@@ -8,7 +8,7 @@ namespace TechCheck_Final
 {
     public partial class UC_YeniKayit : UserControl
     {
-        string baglantiYolu = @"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=TechCheckDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+        string baglantiYolu =(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True");
 
         public UC_YeniKayit()
         {
@@ -17,7 +17,7 @@ namespace TechCheck_Final
 
         private void UC_YeniKayit_Load(object sender, EventArgs e)
         {
-            PersonelleriGetir(); // Sayfa açılınca teknisyenler yüklensin
+            PersonelleriGetir(); // Sayfa açılınca teknisyenler yüklenir.
         }
 
         private void PersonelleriGetir()
@@ -53,13 +53,13 @@ namespace TechCheck_Final
                 try
                 {
                     baglanti.Open();
-                    // 1. Müşteriyi ekle
+                    // 1. Müşteriyi ekleme kısmı
                     string mSorgu = "INSERT INTO Customers (FullName) OUTPUT INSERTED.CustomerID VALUES (@name)";
                     SqlCommand mKomut = new SqlCommand(mSorgu, baglanti);
                     mKomut.Parameters.AddWithValue("@name", txtMusteriAd.Text);
                     int mId = (int)mKomut.ExecuteScalar();
 
-                    // 2. Cihazı ekle
+                    // 2. Cihazı ekleme kısmı
                     string cSorgu = "INSERT INTO Devices (CustomerID, Model, SerialNumber) OUTPUT INSERTED.DeviceID VALUES (@mId, @model, @seri)";
                     SqlCommand cKomut = new SqlCommand(cSorgu, baglanti);
                     cKomut.Parameters.AddWithValue("@mId", mId);
@@ -67,7 +67,7 @@ namespace TechCheck_Final
                     cKomut.Parameters.AddWithValue("@seri", txtSeriNo.Text);
                     int dId = (int)cKomut.ExecuteScalar();
 
-                    // 3. Servis kaydını oluştur
+                    // 3. Servis kaydını oluşturma kısmı
                     string sSorgu = "INSERT INTO ServiceRecords (DeviceID, TechnicianID, FailureDescription, Status) VALUES (@dId, @tId, @ariza, @durum)";
                     SqlCommand sKomut = new SqlCommand(sSorgu, baglanti);
                     sKomut.Parameters.AddWithValue("@dId", dId);

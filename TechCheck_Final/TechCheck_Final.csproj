@@ -99,11 +99,23 @@
     <Compile Include="UC_Anasayfa.Designer.cs">
       <DependentUpon>UC_Anasayfa.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC_BekleyenArizalar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_BekleyenArizalar.Designer.cs">
+      <DependentUpon>UC_BekleyenArizalar.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC_CihazListesi.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UC_CihazListesi.Designer.cs">
       <DependentUpon>UC_CihazListesi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PersonelKarti.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_PersonelKarti.Designer.cs">
+      <DependentUpon>UC_PersonelKarti.cs</DependentUpon>
     </Compile>
     <Compile Include="UC_Personeller.cs">
       <SubType>UserControl</SubType>
@@ -148,8 +160,14 @@
     <EmbeddedResource Include="UC_Anasayfa.resx">
       <DependentUpon>UC_Anasayfa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC_BekleyenArizalar.resx">
+      <DependentUpon>UC_BekleyenArizalar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC_CihazListesi.resx">
       <DependentUpon>UC_CihazListesi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_PersonelKarti.resx">
+      <DependentUpon>UC_PersonelKarti.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC_Personeller.resx">
       <DependentUpon>UC_Personeller.cs</DependentUpon>
@@ -208,13 +226,31 @@
     <None Include="Resources\trash.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\user1.png" />
+    <None Include="Resources\user3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\user2.png" />
+    <None Include="Resources\user4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\email.png" />
+    <None Include="Resources\admin-alt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mobile-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\envelope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\circle-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-dots-vertical.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

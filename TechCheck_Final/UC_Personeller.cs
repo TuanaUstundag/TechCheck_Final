@@ -11,7 +11,6 @@ using System.Windows.Forms;
 
 namespace TechCheck_Final
 {
-    
     public partial class UC_Personeller : UserControl
     {
         public UC_Personeller()
@@ -21,58 +20,51 @@ namespace TechCheck_Final
 
         private void dgvPersoneller_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
-            
+
         }
 
         private void UC_Personeller_Load(object sender, EventArgs e)
         {
-            
             dgvPersoneller.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
-           
             PersonelListele();
         }
 
         private void btnPersonelEkle_Click(object sender, EventArgs e)
         {
-            frmPersonelEkle yeniForm = new frmPersonelEkle();
-
-            
+            // BÜYÜ BURADA: frmKayitOl formunu açarken "this" ile bu UserControl'ü gönderiyoruz ki işi bitince listeyi yenileyebilsin.
+            frmKayitOl yeniForm = new frmKayitOl(this);
             yeniForm.ShowDialog();
 
-            
+            // Alternatif garanti yenileme (Form kapanınca da çalışır)
             PersonelListele();
         }
 
         public void PersonelListele()
         {
-            SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True
-");
+            SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True");
             dgvPersoneller.Rows.Clear();
 
             baglanti.Open();
-            SqlCommand komut = new SqlCommand("SELECT * FROM Personeller", baglanti);
+            // TABLO ADI GÜNCELLENDİ: Kullanicilar
+            SqlCommand komut = new SqlCommand("SELECT * FROM Kullanicilar", baglanti);
             SqlDataReader oku = komut.ExecuteReader();
 
             while (oku.Read())
             {
-                string adMail = oku["AdSoyad"].ToString() + "\n" + oku["Email"].ToString();
+                // SÜTUN ADLARI GÜNCELLENDİ: AdSoyad yerine KullaniciAdi
+                string adMail = oku["KullaniciAdi"].ToString() + "\n" + oku["Email"].ToString();
                 string veritabanindakiResimYolu = oku["ResimYolu"].ToString();
 
-               
                 System.Drawing.Image profilResmi = Properties.Resources.avatar_1;
 
-                
                 if (!string.IsNullOrEmpty(veritabanindakiResimYolu) && System.IO.File.Exists(veritabanindakiResimYolu))
                 {
                     profilResmi = System.Drawing.Image.FromFile(veritabanindakiResimYolu);
                 }
 
-                
-                int satirNo = dgvPersoneller.Rows.Add(false, profilResmi, adMail, oku["Gorev"].ToString(), "08:00 h", oku["Maas"].ToString(), oku["Telefon"].ToString());
+                // SÜTUN ADLARI GÜNCELLENDİ: Gorev yerine KullaniciRolu
+                int satirNo = dgvPersoneller.Rows.Add(false, profilResmi, adMail, oku["KullaniciRolu"].ToString(), "08:00 h", oku["Maas"].ToString(), oku["Telefon"].ToString());
 
-               
                 dgvPersoneller.Rows[satirNo].Tag = oku["Id"];
             }
 
@@ -81,8 +73,7 @@ namespace TechCheck_Final
 
         private void btnPersonelSil_Click(object sender, EventArgs e)
         {
-            SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True
-");
+            SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True");
             bool silinenVarMi = false;
 
             baglanti.Open();
@@ -95,7 +86,8 @@ namespace TechCheck_Final
                 {
                     int silinecekId = Convert.ToInt32(dgvPersoneller.Rows[i].Tag);
 
-                    SqlCommand komut = new SqlCommand("DELETE FROM Personeller WHERE Id = @p1", baglanti);
+                    // TABLO ADI GÜNCELLENDİ
+                    SqlCommand komut = new SqlCommand("DELETE FROM Kullanicilar WHERE Id = @p1", baglanti);
                     komut.Parameters.AddWithValue("@p1", silinecekId);
                     komut.ExecuteNonQuery();
 
@@ -108,7 +100,6 @@ namespace TechCheck_Final
             if (silinenVarMi == true)
             {
                 MessageBox.Show("Seçili personeller silindi🗑️", "İşlem Başarılı");
-
                 PersonelListele();
             }
             else
@@ -123,11 +114,12 @@ namespace TechCheck_Final
 
             try
             {
-                dgvPersoneller.Rows.Clear(); 
+                dgvPersoneller.Rows.Clear();
 
                 baglanti.Open();
 
-                string sorgu = "SELECT * FROM Personeller WHERE AdSoyad LIKE @aranan";
+                // TABLO VE SÜTUN GÜNCELLENDİ
+                string sorgu = "SELECT * FROM Kullanicilar WHERE KullaniciAdi LIKE @aranan";
                 SqlCommand komut = new SqlCommand(sorgu, baglanti);
                 komut.Parameters.AddWithValue("@aranan", "%" + txtArama.Text + "%");
 
@@ -135,7 +127,7 @@ namespace TechCheck_Final
 
                 while (oku.Read())
                 {
-                    string adMail = oku["AdSoyad"].ToString() + "\n" + oku["Email"].ToString();
+                    string adMail = oku["KullaniciAdi"].ToString() + "\n" + oku["Email"].ToString();
                     string veritabanindakiResimYolu = oku["ResimYolu"].ToString();
 
                     System.Drawing.Image profilResmi = Properties.Resources.avatar_1;
@@ -145,7 +137,7 @@ namespace TechCheck_Final
                         profilResmi = System.Drawing.Image.FromFile(veritabanindakiResimYolu);
                     }
 
-                    int satirNo = dgvPersoneller.Rows.Add(false, profilResmi, adMail, oku["Gorev"].ToString(), "08:00 h", oku["Maas"].ToString(), oku["Telefon"].ToString());
+                    int satirNo = dgvPersoneller.Rows.Add(false, profilResmi, adMail, oku["KullaniciRolu"].ToString(), "08:00 h", oku["Maas"].ToString(), oku["Telefon"].ToString());
                     dgvPersoneller.Rows[satirNo].Tag = oku["Id"];
                 }
 
@@ -160,7 +152,6 @@ namespace TechCheck_Final
 
         private void btnPersonelDuzenle_Click(object sender, EventArgs e)
         {
-            
             int isaretlenenSayisi = 0;
             int seciliId = -1;
 
@@ -174,28 +165,23 @@ namespace TechCheck_Final
                 }
             }
 
-           
             if (isaretlenenSayisi == 0)
             {
                 MessageBox.Show("Düzenlemek için önce bir personel seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-           
             if (isaretlenenSayisi > 1)
             {
                 MessageBox.Show("Aynı anda sadece 1 personel düzenlenebilir.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-           
             frmPersonelDuzenle duzenleForm = new frmPersonelDuzenle();
             duzenleForm.PersonelId = seciliId;
             duzenleForm.ShowDialog();
 
-            
             PersonelListele();
-        
         }
     }
 }
