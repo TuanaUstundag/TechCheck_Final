@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11626.88 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechCheck_Admin", "TechCheck_Admin.csproj", "{4283DA13-F049-31B2-BAC1-3B853D04A045}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4283DA13-F049-31B2-BAC1-3B853D04A045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4283DA13-F049-31B2-BAC1-3B853D04A045}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4283DA13-F049-31B2-BAC1-3B853D04A045}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4283DA13-F049-31B2-BAC1-3B853D04A045}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F269350E-B1DD-4760-8AA4-95C160EDC29B}
+	EndGlobalSection
+EndGlobal
