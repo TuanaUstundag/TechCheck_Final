@@ -10,10 +10,10 @@ namespace TechCheck_Final
         string baglantiYolu = (@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True");
         string secilenResimYolu = "";
 
-        // Liste UserControl'ümüzle bağlantı kuracak değişken
+        
         private UC_Personeller _personelListesi;
 
-        // Constructor güncellendi: Artık form açılırken UC_Personeller referansını alabiliyor.
+      
         public frmKayitOl(UC_Personeller personelListesi = null)
         {
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace TechCheck_Final
                 {
                     baglanti.Open();
 
-                    // SORGUN GÜNCELLENDİ: Kullanicilar tablosuna ResimYolu eklendi
+                   
                     string sorgu = "INSERT INTO Kullanicilar (KullaniciAdi, Sifre, KullaniciRolu, Email, Maas, Telefon, ResimYolu) VALUES (@user, @pass, @role, @mail, @maas, @telefon, @resimyolu)";
 
                     SqlCommand komut = new SqlCommand(sorgu, baglanti);
@@ -44,7 +44,7 @@ namespace TechCheck_Final
                     komut.Parameters.AddWithValue("@mail", txtEmail.Text.Trim());
                     komut.Parameters.AddWithValue("@maas", txtMaas.Text.Trim());
                     komut.Parameters.AddWithValue("@telefon", txtTelefon.Text.Trim());
-                    komut.Parameters.AddWithValue("@resimyolu", secilenResimYolu); // Resim yolu veritabanına gidiyor
+                    komut.Parameters.AddWithValue("@resimyolu", secilenResimYolu); 
 
                     komut.ExecuteNonQuery();
 

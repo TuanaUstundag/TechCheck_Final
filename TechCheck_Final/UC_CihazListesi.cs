@@ -48,7 +48,7 @@ namespace TechCheck_Final
                     dgvCihazListesi.DataSource = null;
                     dgvCihazListesi.Columns.Clear();
 
-                    // 1) ÖNCE CHECKBOX SÜTUNUNU EKLE
+                    
                     DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn
                     {
                         Name = "colSec",

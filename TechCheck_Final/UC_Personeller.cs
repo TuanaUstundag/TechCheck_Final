@@ -31,11 +31,11 @@ namespace TechCheck_Final
 
         private void btnPersonelEkle_Click(object sender, EventArgs e)
         {
-            // BÜYÜ BURADA: frmKayitOl formunu açarken "this" ile bu UserControl'ü gönderiyoruz ki işi bitince listeyi yenileyebilsin.
+            
             frmKayitOl yeniForm = new frmKayitOl(this);
             yeniForm.ShowDialog();
 
-            // Alternatif garanti yenileme (Form kapanınca da çalışır)
+            
             PersonelListele();
         }
 
