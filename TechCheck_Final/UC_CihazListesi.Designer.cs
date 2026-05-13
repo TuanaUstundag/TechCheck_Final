@@ -90,7 +90,6 @@
             this.btnSil.Size = new System.Drawing.Size(268, 72);
             this.btnSil.TabIndex = 12;
             this.btnSil.Text = "Sil";
-            this.btnSil.Click += new System.EventHandler(this.btnSil_Click_1);
             // 
             // dgvCihazListesi
             // 

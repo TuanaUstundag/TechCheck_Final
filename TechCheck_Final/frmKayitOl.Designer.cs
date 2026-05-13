@@ -105,7 +105,7 @@
             this.txtSifre.Size = new System.Drawing.Size(336, 55);
             this.txtSifre.TabIndex = 0;
             this.txtSifre.UseSystemPasswordChar = true;
-            this.txtSifre.TextChanged += new System.EventHandler(this.txtSifre_TextChanged);
+          
             // 
             // guna2DragControl1
             // 
@@ -265,8 +265,7 @@
             this.pbResim.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbResim.TabIndex = 22;
             this.pbResim.TabStop = false;
-            this.pbResim.Click += new System.EventHandler(this.pbResim_Click);
-            // 
+         
             // txtTelefon
             // 
             this.txtTelefon.BorderRadius = 10;

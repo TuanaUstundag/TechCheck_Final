@@ -18,8 +18,7 @@ namespace TechCheck_Final
         {
             InitializeComponent();
         }
-        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True
-");
+        SqlConnection baglanti = new SqlConnection(@"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=TechCheckDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=True");
         private void btnKaydet_Click(object sender, EventArgs e)
         {
             baglanti.Open();

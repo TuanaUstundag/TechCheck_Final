@@ -28,8 +28,8 @@ namespace TechCheck_Final
             txtAriza.Text = ariza;
             cmbDurum.Text = durum;
         }
-        
-        SqlConnection baglanti = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True");
+
+        SqlConnection baglanti = new SqlConnection(@"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=TechCheckDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=True");
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
             try

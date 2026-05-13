@@ -149,7 +149,6 @@
             this.btnTemizle.Size = new System.Drawing.Size(211, 53);
             this.btnTemizle.TabIndex = 11;
             this.btnTemizle.Text = "Formu Boşalt";
-            this.btnTemizle.Click += new System.EventHandler(this.btnTemizle_Click);
             // 
             // btnKaydet
             // 
@@ -324,6 +323,7 @@
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(494, 35);
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "Yeni Cihaz Kaydı Oluştur";
+            this.guna2HtmlLabel1.LoadComplete += new System.EventHandler(this.guna2HtmlLabel1_LoadComplete);
             // 
             // UC_YeniKayit
             // 
@@ -334,6 +334,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UC_YeniKayit";
             this.Size = new System.Drawing.Size(1004, 657);
+            this.Load += new System.EventHandler(this.UC_YeniKayit_Load_1);
             this.guna2ShadowPanel1.ResumeLayout(false);
             this.guna2ShadowPanel1.PerformLayout();
             this.ResumeLayout(false);

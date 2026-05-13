@@ -32,28 +32,28 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.lblToplamPersonel = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2ShadowPanel3 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.lblBekleyenCihaz = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.lblToplamCihaz = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.guna2Panel2.SuspendLayout();
-            this.guna2ShadowPanel1.SuspendLayout();
-            this.guna2ShadowPanel3.SuspendLayout();
-            this.guna2ShadowPanel2.SuspendLayout();
+            this.lblToplamPersonel.SuspendLayout();
+            this.lblBekleyenCihaz.SuspendLayout();
+            this.lblToplamCihaz.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2Panel2
             // 
-            this.guna2Panel2.Controls.Add(this.guna2ShadowPanel1);
-            this.guna2Panel2.Controls.Add(this.guna2ShadowPanel3);
-            this.guna2Panel2.Controls.Add(this.guna2ShadowPanel2);
+            this.guna2Panel2.Controls.Add(this.lblToplamPersonel);
+            this.guna2Panel2.Controls.Add(this.lblBekleyenCihaz);
+            this.guna2Panel2.Controls.Add(this.lblToplamCihaz);
             this.guna2Panel2.Controls.Add(this.guna2DataGridView1);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel2.Location = new System.Drawing.Point(0, 0);
@@ -61,18 +61,18 @@
             this.guna2Panel2.Size = new System.Drawing.Size(1013, 675);
             this.guna2Panel2.TabIndex = 0;
             // 
-            // guna2ShadowPanel1
+            // lblToplamPersonel
             // 
-            this.guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ShadowPanel1.Controls.Add(this.guna2HtmlLabel5);
-            this.guna2ShadowPanel1.Controls.Add(this.guna2HtmlLabel1);
-            this.guna2ShadowPanel1.FillColor = System.Drawing.Color.CornflowerBlue;
-            this.guna2ShadowPanel1.Location = new System.Drawing.Point(489, 21);
-            this.guna2ShadowPanel1.Margin = new System.Windows.Forms.Padding(2);
-            this.guna2ShadowPanel1.Name = "guna2ShadowPanel1";
-            this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
-            this.guna2ShadowPanel1.Size = new System.Drawing.Size(188, 98);
-            this.guna2ShadowPanel1.TabIndex = 11;
+            this.lblToplamPersonel.BackColor = System.Drawing.Color.Transparent;
+            this.lblToplamPersonel.Controls.Add(this.guna2HtmlLabel5);
+            this.lblToplamPersonel.Controls.Add(this.guna2HtmlLabel1);
+            this.lblToplamPersonel.FillColor = System.Drawing.Color.CornflowerBlue;
+            this.lblToplamPersonel.Location = new System.Drawing.Point(489, 21);
+            this.lblToplamPersonel.Margin = new System.Windows.Forms.Padding(2);
+            this.lblToplamPersonel.Name = "lblToplamPersonel";
+            this.lblToplamPersonel.ShadowColor = System.Drawing.Color.Black;
+            this.lblToplamPersonel.Size = new System.Drawing.Size(188, 98);
+            this.lblToplamPersonel.TabIndex = 11;
             // 
             // guna2HtmlLabel5
             // 
@@ -98,18 +98,18 @@
             this.guna2HtmlLabel1.TabIndex = 3;
             this.guna2HtmlLabel1.Text = "154";
             // 
-            // guna2ShadowPanel3
+            // lblBekleyenCihaz
             // 
-            this.guna2ShadowPanel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ShadowPanel3.Controls.Add(this.guna2HtmlLabel6);
-            this.guna2ShadowPanel3.Controls.Add(this.guna2HtmlLabel3);
-            this.guna2ShadowPanel3.FillColor = System.Drawing.Color.CornflowerBlue;
-            this.guna2ShadowPanel3.Location = new System.Drawing.Point(825, 21);
-            this.guna2ShadowPanel3.Margin = new System.Windows.Forms.Padding(2);
-            this.guna2ShadowPanel3.Name = "guna2ShadowPanel3";
-            this.guna2ShadowPanel3.ShadowColor = System.Drawing.Color.Black;
-            this.guna2ShadowPanel3.Size = new System.Drawing.Size(188, 98);
-            this.guna2ShadowPanel3.TabIndex = 10;
+            this.lblBekleyenCihaz.BackColor = System.Drawing.Color.Transparent;
+            this.lblBekleyenCihaz.Controls.Add(this.guna2HtmlLabel6);
+            this.lblBekleyenCihaz.Controls.Add(this.guna2HtmlLabel3);
+            this.lblBekleyenCihaz.FillColor = System.Drawing.Color.CornflowerBlue;
+            this.lblBekleyenCihaz.Location = new System.Drawing.Point(825, 21);
+            this.lblBekleyenCihaz.Margin = new System.Windows.Forms.Padding(2);
+            this.lblBekleyenCihaz.Name = "lblBekleyenCihaz";
+            this.lblBekleyenCihaz.ShadowColor = System.Drawing.Color.Black;
+            this.lblBekleyenCihaz.Size = new System.Drawing.Size(188, 98);
+            this.lblBekleyenCihaz.TabIndex = 10;
             // 
             // guna2HtmlLabel6
             // 
@@ -135,18 +135,18 @@
             this.guna2HtmlLabel3.TabIndex = 4;
             this.guna2HtmlLabel3.Text = "Bekleyen Arıza";
             // 
-            // guna2ShadowPanel2
+            // lblToplamCihaz
             // 
-            this.guna2ShadowPanel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ShadowPanel2.Controls.Add(this.guna2HtmlLabel2);
-            this.guna2ShadowPanel2.Controls.Add(this.guna2HtmlLabel4);
-            this.guna2ShadowPanel2.FillColor = System.Drawing.Color.CornflowerBlue;
-            this.guna2ShadowPanel2.Location = new System.Drawing.Point(150, 21);
-            this.guna2ShadowPanel2.Margin = new System.Windows.Forms.Padding(2);
-            this.guna2ShadowPanel2.Name = "guna2ShadowPanel2";
-            this.guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Black;
-            this.guna2ShadowPanel2.Size = new System.Drawing.Size(188, 98);
-            this.guna2ShadowPanel2.TabIndex = 9;
+            this.lblToplamCihaz.BackColor = System.Drawing.Color.Transparent;
+            this.lblToplamCihaz.Controls.Add(this.guna2HtmlLabel2);
+            this.lblToplamCihaz.Controls.Add(this.guna2HtmlLabel4);
+            this.lblToplamCihaz.FillColor = System.Drawing.Color.CornflowerBlue;
+            this.lblToplamCihaz.Location = new System.Drawing.Point(150, 21);
+            this.lblToplamCihaz.Margin = new System.Windows.Forms.Padding(2);
+            this.lblToplamCihaz.Name = "lblToplamCihaz";
+            this.lblToplamCihaz.ShadowColor = System.Drawing.Color.Black;
+            this.lblToplamCihaz.Size = new System.Drawing.Size(188, 98);
+            this.lblToplamCihaz.TabIndex = 9;
             // 
             // guna2HtmlLabel2
             // 
@@ -222,7 +222,6 @@
             this.guna2DataGridView1.ThemeStyle.RowsStyle.Height = 22;
             this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.guna2DataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.guna2DataGridView1_CellContentClick);
             // 
             // UC_Anasayfa
             // 
@@ -233,12 +232,12 @@
             this.Name = "UC_Anasayfa";
             this.Size = new System.Drawing.Size(1013, 675);
             this.guna2Panel2.ResumeLayout(false);
-            this.guna2ShadowPanel1.ResumeLayout(false);
-            this.guna2ShadowPanel1.PerformLayout();
-            this.guna2ShadowPanel3.ResumeLayout(false);
-            this.guna2ShadowPanel3.PerformLayout();
-            this.guna2ShadowPanel2.ResumeLayout(false);
-            this.guna2ShadowPanel2.PerformLayout();
+            this.lblToplamPersonel.ResumeLayout(false);
+            this.lblToplamPersonel.PerformLayout();
+            this.lblBekleyenCihaz.ResumeLayout(false);
+            this.lblBekleyenCihaz.PerformLayout();
+            this.lblToplamCihaz.ResumeLayout(false);
+            this.lblToplamCihaz.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -246,13 +245,13 @@
 
         #endregion
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
-        private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel1;
+        private Guna.UI2.WinForms.Guna2ShadowPanel lblToplamPersonel;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel3;
+        private Guna.UI2.WinForms.Guna2ShadowPanel lblBekleyenCihaz;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
-        private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel2;
+        private Guna.UI2.WinForms.Guna2ShadowPanel lblToplamCihaz;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;

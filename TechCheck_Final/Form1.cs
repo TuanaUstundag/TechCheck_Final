@@ -10,7 +10,7 @@ namespace TechCheck_Final
     public partial class Form1 : Form
     {
         // Bağlantı adresin (TrustServerCertificate eklendi, hata vermez)
-        string baglantiYolu = (@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True");
+        string baglantiYolu = @"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=TechCheckDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
 
         public Form1()
         {
@@ -31,16 +31,16 @@ namespace TechCheck_Final
                 {
                     baglanti.Open();
                     // Yeni Users tablosuna göre sorgu
-                    string sorgu = "SELECT * FROM Kullanicilar WHERE KullaniciAdi=@p1 AND Sifre=@p2";
+                    string sorgu = "SELECT * FROM Users WHERE Username=@p1 AND Password=@p2";
                     SqlCommand komut = new SqlCommand(sorgu, baglanti);
-                    komut.Parameters.AddWithValue("@p1", txtKullaniciAdi.Text);
+                    komut.Parameters.AddWithValue("@p1", txtUsername.Text);
                     komut.Parameters.AddWithValue("@p2", txtSifre.Text);
 
                     SqlDataReader dr = komut.ExecuteReader();
 
                     if (dr.Read())
                     {
-                        string rol = dr["KullaniciRolu"].ToString();
+                        string rol = dr["UserRole"].ToString();
                         MessageBox.Show("Giriş Başarılı! Rolünüz: " + rol, "TechCheck",
                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 

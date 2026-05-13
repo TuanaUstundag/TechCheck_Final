@@ -11,7 +11,7 @@ namespace TechCheck_Final
         private string secilenResimYolu = "";
 
         // Bağlantı yolunu her seferinde uzun uzun yazmamak için buraya aldım
-        string baglantiYolu = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True";
+        string baglantiYolu = @"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=TechCheckDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
 
         public frmPersonelDuzenle()
         {

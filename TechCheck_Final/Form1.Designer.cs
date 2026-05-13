@@ -38,7 +38,7 @@
             this.lblForgetPassword = new System.Windows.Forms.LinkLabel();
             this.chkRememberMe = new Guna.UI2.WinForms.Guna2CheckBox();
             this.txtSifre = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtKullaniciAdi = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
             this.Login = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -79,7 +79,7 @@
             this.panel1.Controls.Add(this.lblForgetPassword);
             this.panel1.Controls.Add(this.chkRememberMe);
             this.panel1.Controls.Add(this.txtSifre);
-            this.panel1.Controls.Add(this.txtKullaniciAdi);
+            this.panel1.Controls.Add(this.txtUsername);
             this.panel1.Controls.Add(this.Login);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(515, 0);
@@ -193,24 +193,24 @@
             this.txtSifre.Size = new System.Drawing.Size(218, 39);
             this.txtSifre.TabIndex = 3;
             // 
-            // txtKullaniciAdi
+            // txtUsername
             // 
-            this.txtKullaniciAdi.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtKullaniciAdi.DefaultText = "";
-            this.txtKullaniciAdi.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtKullaniciAdi.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtKullaniciAdi.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtKullaniciAdi.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtKullaniciAdi.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtKullaniciAdi.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtKullaniciAdi.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtKullaniciAdi.Location = new System.Drawing.Point(143, 205);
-            this.txtKullaniciAdi.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.txtKullaniciAdi.Name = "txtKullaniciAdi";
-            this.txtKullaniciAdi.PlaceholderText = "username@gmail.com";
-            this.txtKullaniciAdi.SelectedText = "";
-            this.txtKullaniciAdi.Size = new System.Drawing.Size(218, 39);
-            this.txtKullaniciAdi.TabIndex = 2;
+            this.txtUsername.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtUsername.DefaultText = "";
+            this.txtUsername.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtUsername.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtUsername.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtUsername.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtUsername.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtUsername.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtUsername.Location = new System.Drawing.Point(143, 205);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.PlaceholderText = "username@gmail.com";
+            this.txtUsername.SelectedText = "";
+            this.txtUsername.Size = new System.Drawing.Size(218, 39);
+            this.txtUsername.TabIndex = 2;
             // 
             // Login
             // 
@@ -252,7 +252,7 @@
         private System.Windows.Forms.Label Login;
         private Guna.UI2.WinForms.Guna2CheckBox chkRememberMe;
         private Guna.UI2.WinForms.Guna2TextBox txtSifre;
-        private Guna.UI2.WinForms.Guna2TextBox txtKullaniciAdi;
+        private Guna.UI2.WinForms.Guna2TextBox txtUsername;
         private System.Windows.Forms.LinkLabel lblForgetPassword;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;

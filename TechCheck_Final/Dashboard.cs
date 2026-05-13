@@ -9,7 +9,7 @@ namespace TechCheck_Final
     public partial class Dashboard : Form
     {
         // Bağlantı yolunu buraya sabitleyelim, her yerden rahatça kullanırız
-        public string baglantiYolu = (@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True");
+        public string baglantiYolu = (@"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=TechCheckDB;Integrated Security=True");
 
         public Dashboard()
         {

@@ -68,7 +68,6 @@
             this.txtArama.SelectedText = "";
             this.txtArama.Size = new System.Drawing.Size(973, 60);
             this.txtArama.TabIndex = 0;
-            this.txtArama.TextChanged += new System.EventHandler(this.guna2TextBox1_TextChanged);
             // 
             // btnPersonelEkle
             // 
