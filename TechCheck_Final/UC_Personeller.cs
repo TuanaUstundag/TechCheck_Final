@@ -25,6 +25,12 @@ namespace TechCheck_Final
         public void PersonelListele()
         {
             VeriGetir("SELECT * FROM Users");
+            
+            frmKayitOl yeniForm = new frmKayitOl(this);
+            yeniForm.ShowDialog();
+
+            
+            PersonelListele();
         }
 
         private void VeriGetir(string sorgu, SqlParameter parametre = null)

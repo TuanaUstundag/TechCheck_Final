@@ -11,8 +11,10 @@ namespace TechCheck_Final
         string baglantiYolu = @"Data Source=KEREMKLKS\SQLEXPRESS;Initial Catalog=TechCheckDB;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
         string secilenResimYolu = "";
 
+        
         private UC_Personeller _personelListesi;
 
+      
         public frmKayitOl(UC_Personeller personelListesi = null)
         {
             InitializeComponent();
@@ -38,6 +40,8 @@ namespace TechCheck_Final
                     // 2. ADIM: SQL Sorgusu (UserRole sütununa dikkat!)
                     string sorgu = @"INSERT INTO Users (Username, Password, UserRole, Email, Salary, Phone, ProfilePicture) 
                                    VALUES (@user, @pass, @role, @mail, @maas, @telefon, @resimyolu)";
+                   
+                    string sorgu = "INSERT INTO Kullanicilar (KullaniciAdi, Sifre, KullaniciRolu, Email, Maas, Telefon, ResimYolu) VALUES (@user, @pass, @role, @mail, @maas, @telefon, @resimyolu)";
 
                     // 3. ADIM: Önce komutu OLUŞTURUYORUZ (Hata buradaydı)
                     SqlCommand komut = new SqlCommand(sorgu, baglanti);
@@ -50,6 +54,9 @@ namespace TechCheck_Final
                     komut.Parameters.AddWithValue("@maas", string.IsNullOrEmpty(txtMaas.Text) ? "0" : txtMaas.Text.Trim());
                     komut.Parameters.AddWithValue("@telefon", string.IsNullOrEmpty(txtTelefon.Text) ? "-" : txtTelefon.Text.Trim());
                     komut.Parameters.AddWithValue("@resimyolu", secilenResimYolu);
+                    komut.Parameters.AddWithValue("@maas", txtMaas.Text.Trim());
+                    komut.Parameters.AddWithValue("@telefon", txtTelefon.Text.Trim());
+                    komut.Parameters.AddWithValue("@resimyolu", secilenResimYolu); 
 
                     // 5. ADIM: Sorguyu çalıştır
                     komut.ExecuteNonQuery();
