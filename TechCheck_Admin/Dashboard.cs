@@ -16,7 +16,19 @@ namespace TechCheck_Admin
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            
+            // LocalDB'yi otomatik başlat
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = "sqllocaldb",
+                    Arguments = "start MSSQLLocalDB",
+                    CreateNoWindow = true,
+                    UseShellExecute = false
+                });
+            }
+            catch { }
+
             KullanicilariYukle();
             PersonelleriYukle();
             CihazlariYukle();
@@ -63,10 +75,21 @@ namespace TechCheck_Admin
             using (SqlConnection baglanti = new SqlConnection(baglantiYolu))
             {
                 baglanti.Open();
-                SqlDataAdapter da = new SqlDataAdapter("SELECT Id, MusteriAd, CihazModel, SeriNo, Ariza, Durum, KayitTarihi FROM Cihazlar", baglanti);
+                SqlDataAdapter da = new SqlDataAdapter("SELECT Id, MusteriAd, CihazModel, SeriNo, Ariza, Durum, AtananPersonel, KayitTarihi FROM Cihazlar", baglanti);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dgvCihazlar.DataSource = dt;
+
+                // Ata buton sütunu yoksa ekle
+                if (!dgvCihazlar.Columns.Contains("btnAta"))
+                {
+                    DataGridViewButtonColumn btnAta = new DataGridViewButtonColumn();
+                    btnAta.Name = "btnAta";
+                    btnAta.HeaderText = "İşlem";
+                    btnAta.Text = "Ata";
+                    btnAta.UseColumnTextForButtonValue = true;
+                    dgvCihazlar.Columns.Add(btnAta);
+                }
             }
         }
 
@@ -132,10 +155,59 @@ namespace TechCheck_Admin
 
         private void btnCikis_Click(object sender, EventArgs e)
         {
-            this.Close();
-            new frmAdminGiris().Show();
+            Application.Exit();
         }
 
-        
+        private void dgvCihazlar_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            if (dgvCihazlar.Columns[e.ColumnIndex].Name != "btnAta") return;
+
+            int cihazId = Convert.ToInt32(dgvCihazlar.Rows[e.RowIndex].Cells["Id"].Value);
+
+            using (SqlConnection baglanti = new SqlConnection(baglantiYolu))
+            {
+                baglanti.Open();
+                // Kullanicilar tablosundan Teknisyen rolündekileri çek
+                SqlDataAdapter da = new SqlDataAdapter("SELECT KullaniciAdi FROM Kullanicilar WHERE KullaniciRolu='Teknisyen'", baglanti);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                Form secimForm = new Form();
+                secimForm.Text = "Personel Seç";
+                secimForm.Size = new System.Drawing.Size(300, 200);
+                secimForm.StartPosition = FormStartPosition.CenterParent;
+
+                ComboBox cmb = new ComboBox();
+                cmb.Location = new System.Drawing.Point(20, 30);
+                cmb.Width = 240;
+                foreach (DataRow row in dt.Rows)
+                    cmb.Items.Add(row["KullaniciAdi"].ToString());
+
+                Button btnTamam = new Button();
+                btnTamam.Text = "Ata";
+                btnTamam.Location = new System.Drawing.Point(20, 80);
+                btnTamam.Click += (s, ev) =>
+                {
+                    if (cmb.SelectedItem == null) { MessageBox.Show("Personel seçin!"); return; }
+
+                    using (SqlConnection b = new SqlConnection(baglantiYolu))
+                    {
+                        b.Open();
+                        SqlCommand cmd = new SqlCommand("UPDATE Cihazlar SET AtananPersonel=@p WHERE Id=@id", b);
+                        cmd.Parameters.AddWithValue("@p", cmb.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@id", cihazId);
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("Atama başarılı!");
+                    secimForm.Close();
+                    CihazlariYukle();
+                };
+
+                secimForm.Controls.Add(cmb);
+                secimForm.Controls.Add(btnTamam);
+                secimForm.ShowDialog();
+            }
+        }
     }
 }

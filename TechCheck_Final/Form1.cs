@@ -72,5 +72,36 @@ namespace TechCheck_Final
         {
 
         }
+
+        private void btnAdminGiris_Click(object sender, EventArgs e)
+        {
+            string kullanici = txtKullaniciAdi.Text.Trim();
+            string sifre = txtSifre.Text.Trim();
+
+            string baglantiYolu = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mnjrosan;Integrated Security=True;Encrypt=False";
+
+            using (SqlConnection baglanti = new SqlConnection(baglantiYolu))
+            {
+                baglanti.Open();
+                string sql = "SELECT COUNT(*) FROM Admins WHERE KullaniciAdi=@k1 AND Sifre=@s1";
+                using (SqlCommand komut = new SqlCommand(sql, baglanti))
+                {
+                    komut.Parameters.AddWithValue("@k1", kullanici);
+                    komut.Parameters.AddWithValue("@s1", sifre);
+                    int sonuc = Convert.ToInt32(komut.ExecuteScalar());
+
+                    if (sonuc > 0)
+                    {
+                        string adminExePath = @"C:\Users\MSI\Desktop\TechCheck_Final-master\TechCheck_Admin\bin\Debug\net8.0-windows7.0\TechCheck_Admin.exe";
+                        System.Diagnostics.Process.Start(adminExePath);
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hatalı admin bilgileri!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
 }

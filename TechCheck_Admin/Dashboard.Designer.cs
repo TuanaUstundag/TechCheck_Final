@@ -177,7 +177,7 @@
             pnlMain.Dock = DockStyle.Fill;
             pnlMain.Location = new Point(200, 0);
             pnlMain.Name = "pnlMain";
-            pnlMain.Size = new Size(1306, 804);
+            pnlMain.Size = new Size(1593, 804);
             pnlMain.TabIndex = 9;
             // 
             // tabMain
@@ -189,7 +189,7 @@
             tabMain.Location = new Point(0, 182);
             tabMain.Name = "tabMain";
             tabMain.SelectedIndex = 0;
-            tabMain.Size = new Size(1306, 622);
+            tabMain.Size = new Size(1593, 622);
             tabMain.TabIndex = 4;
             tabMain.Tag = "";
             // 
@@ -200,7 +200,7 @@
             Kullanıcılar.Location = new Point(4, 34);
             Kullanıcılar.Name = "Kullanıcılar";
             Kullanıcılar.Padding = new Padding(3);
-            Kullanıcılar.Size = new Size(1175, 584);
+            Kullanıcılar.Size = new Size(1298, 584);
             Kullanıcılar.TabIndex = 0;
             Kullanıcılar.Text = "Kullanıcılar";
             Kullanıcılar.UseVisualStyleBackColor = true;
@@ -229,7 +229,7 @@
             dgvKullanicilar.ReadOnly = true;
             dgvKullanicilar.RowHeadersWidth = 62;
             dgvKullanicilar.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvKullanicilar.Size = new Size(1169, 578);
+            dgvKullanicilar.Size = new Size(1292, 578);
             dgvKullanicilar.TabIndex = 0;
             // 
             // Personeller
@@ -239,7 +239,7 @@
             Personeller.Location = new Point(4, 34);
             Personeller.Name = "Personeller";
             Personeller.Padding = new Padding(3);
-            Personeller.Size = new Size(1175, 584);
+            Personeller.Size = new Size(1298, 584);
             Personeller.TabIndex = 1;
             Personeller.Text = "Personeller";
             Personeller.UseVisualStyleBackColor = true;
@@ -268,7 +268,7 @@
             dgvPersoneller.ReadOnly = true;
             dgvPersoneller.RowHeadersWidth = 62;
             dgvPersoneller.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvPersoneller.Size = new Size(1169, 578);
+            dgvPersoneller.Size = new Size(1292, 578);
             dgvPersoneller.TabIndex = 1;
             // 
             // Cihazlar
@@ -278,7 +278,7 @@
             Cihazlar.Location = new Point(4, 34);
             Cihazlar.Name = "Cihazlar";
             Cihazlar.Padding = new Padding(3);
-            Cihazlar.Size = new Size(1298, 584);
+            Cihazlar.Size = new Size(1585, 584);
             Cihazlar.TabIndex = 2;
             Cihazlar.Text = "Cihazlar";
             Cihazlar.UseVisualStyleBackColor = true;
@@ -289,7 +289,7 @@
             button3.FlatAppearance.BorderColor = Color.FromArgb(240, 153, 123);
             button3.FlatStyle = FlatStyle.Flat;
             button3.ForeColor = Color.FromArgb(153, 60, 29);
-            button3.Location = new Point(1180, 6);
+            button3.Location = new Point(1465, 6);
             button3.Name = "button3";
             button3.Size = new Size(112, 34);
             button3.TabIndex = 3;
@@ -308,8 +308,9 @@
             dgvCihazlar.ReadOnly = true;
             dgvCihazlar.RowHeadersWidth = 62;
             dgvCihazlar.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCihazlar.Size = new Size(1292, 578);
+            dgvCihazlar.Size = new Size(1579, 578);
             dgvCihazlar.TabIndex = 2;
+            dgvCihazlar.CellClick += dgvCihazlar_CellClick;
             // 
             // pnlStats
             // 
@@ -319,7 +320,7 @@
             pnlStats.Dock = DockStyle.Top;
             pnlStats.Location = new Point(0, 55);
             pnlStats.Name = "pnlStats";
-            pnlStats.Size = new Size(1306, 127);
+            pnlStats.Size = new Size(1593, 127);
             pnlStats.TabIndex = 5;
             // 
             // pnlStatKullanici
@@ -357,7 +358,7 @@
             pnlStatPersonel.BackColor = Color.FromArgb(238, 237, 254);
             pnlStatPersonel.Controls.Add(lblPersonelSayi);
             pnlStatPersonel.Controls.Add(label4);
-            pnlStatPersonel.Location = new Point(511, 24);
+            pnlStatPersonel.Location = new Point(685, 24);
             pnlStatPersonel.Name = "pnlStatPersonel";
             pnlStatPersonel.Size = new Size(188, 88);
             pnlStatPersonel.TabIndex = 3;
@@ -387,7 +388,7 @@
             pnlStatCihaz.BackColor = Color.FromArgb(238, 237, 254);
             pnlStatCihaz.Controls.Add(lblCihazSayi);
             pnlStatCihaz.Controls.Add(label3);
-            pnlStatCihaz.Location = new Point(814, 24);
+            pnlStatCihaz.Location = new Point(1148, 24);
             pnlStatCihaz.Name = "pnlStatCihaz";
             pnlStatCihaz.Size = new Size(188, 88);
             pnlStatCihaz.TabIndex = 3;
@@ -419,7 +420,7 @@
             pnlTopBar.Dock = DockStyle.Top;
             pnlTopBar.Location = new Point(0, 0);
             pnlTopBar.Name = "pnlTopBar";
-            pnlTopBar.Size = new Size(1306, 55);
+            pnlTopBar.Size = new Size(1593, 55);
             pnlTopBar.TabIndex = 0;
             // 
             // btnCikis
@@ -429,7 +430,7 @@
             btnCikis.FlatAppearance.BorderSize = 0;
             btnCikis.FlatStyle = FlatStyle.Flat;
             btnCikis.ForeColor = Color.FromArgb(60, 52, 137);
-            btnCikis.Location = new Point(1194, 12);
+            btnCikis.Location = new Point(1486, 13);
             btnCikis.Name = "btnCikis";
             btnCikis.Size = new Size(100, 32);
             btnCikis.TabIndex = 1;
@@ -453,7 +454,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(60, 52, 137);
-            ClientSize = new Size(1506, 804);
+            ClientSize = new Size(1793, 804);
             Controls.Add(pnlMain);
             Controls.Add(pnlSidebar);
             Name = "Dashboard";
